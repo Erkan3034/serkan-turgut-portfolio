@@ -55,7 +55,7 @@ export default function BlogPage() {
               Blog
             </h1>
             <p className="text-xl text-gray-600">
-              Insights and thoughts on biomedical technology and healthcare innovation
+              Biyomedikal teknoloji ve sağlık inovasyonu üzerine paylaşımlar
             </p>
             <div className="w-24 h-1 bg-bio-primary mx-auto mt-6"></div>
           </div>
@@ -94,7 +94,7 @@ export default function BlogPage() {
                           </div>
                           <div className="flex items-center">
                             <Clock className="h-4 w-4 mr-2" />
-                            <span>{Math.ceil(blog.content.split(' ').length / 200)} min read</span>
+                            <span>{Math.ceil(blog.content.split(' ').length / 200)} dk okuma</span>
                           </div>
                         </div>
                       </CardHeader>
@@ -106,7 +106,7 @@ export default function BlogPage() {
                           href={`/blog/${blog.slug}`}
                           className="text-bio-primary hover:text-bio-primary/80 font-medium"
                         >
-                          Read More →
+                          Devamını Oku →
                         </Link>
                       </CardContent>
                     </div>
@@ -121,10 +121,10 @@ export default function BlogPage() {
                   <Calendar className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                  No Blog Posts Available
+                  Blog Yazısı Bulunamadı
                 </h3>
                 <p className="text-gray-500">
-                  Blog posts will be displayed here once published through the admin panel.
+                  Admin panelinden yayınlandığında blog yazıları burada görüntülenecektir.
                 </p>
               </CardContent>
             </Card>

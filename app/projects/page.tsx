@@ -54,10 +54,10 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-bio-text mb-4">
-              Projects
+              Projeler
             </h1>
             <p className="text-xl text-gray-600">
-              Showcasing my work in biomedical device technology and healthcare innovation
+              Biyomedikal cihaz teknolojisi ve sağlık inovasyonu alanındaki çalışmalarım
             </p>
             <div className="w-24 h-1 bg-bio-primary mx-auto mt-6"></div>
           </div>
@@ -99,7 +99,7 @@ export default function ProjectsPage() {
                             onClick={() => setSelectedProject(project)}
                           >
                             <Eye className="h-4 w-4 mr-2" />
-                            View Details
+                            Detayları Gör
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-2xl">
@@ -132,7 +132,7 @@ export default function ProjectsPage() {
                                 <Button variant="outline" asChild>
                                   <a href={project.github_link} target="_blank" rel="noopener noreferrer">
                                     <Github className="h-4 w-4 mr-2" />
-                                    View Code
+                                    Kodu Görüntüle
                                   </a>
                                 </Button>
                               )}
@@ -140,7 +140,7 @@ export default function ProjectsPage() {
                                 <Button asChild>
                                   <a href={project.live_demo} target="_blank" rel="noopener noreferrer">
                                     <ExternalLink className="h-4 w-4 mr-2" />
-                                    Live Demo
+                                    Canlı Demo
                                   </a>
                                 </Button>
                               )}
@@ -160,10 +160,10 @@ export default function ProjectsPage() {
                   <Eye className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                  No Projects Available
+                  Proje Bulunamadı
                 </h3>
                 <p className="text-gray-500">
-                  Projects will be displayed here once added through the admin panel.
+                  Admin panelinden eklendiğinde projeler burada görüntülenecektir.
                 </p>
               </CardContent>
             </Card>
@@ -174,13 +174,20 @@ export default function ProjectsPage() {
             <Card className="bg-bio-primary text-white">
               <CardContent className="p-12">
                 <h2 className="text-3xl font-bold mb-4">
-                  Interested in My Work?
+                  Çalışmalarım İlginizi Çekti mi?
                 </h2>
                 <p className="text-xl mb-8 opacity-90">
-                  Let's discuss how we can work together on innovative healthcare solutions.
+                  Yenilikçi sağlık çözümleri için birlikte nasıl çalışabileceğimizi konuşalım.
                 </p>
-                <Button size="lg" variant="secondary" className="bg-white text-bio-primary hover:bg-gray-100">
-                  Get In Touch
+                <Button
+                  asChild
+                  size="lg"
+                  variant="secondary"
+                  className="bg-white text-bio-primary hover:bg-gray-100"
+                >
+                  <a href="/contact">
+                    İletişime Geç
+                  </a>
                 </Button>
               </CardContent>
             </Card>

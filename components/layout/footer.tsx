@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <h3 className="text-lg font-semibold text-bio-primary">Serkan Turgut</h3>
-            <p className="text-gray-600">Biomedical Device Technology Graduate</p>
+            <p className="text-gray-600">Biomedical Device Technician</p>
           </div>
           
           <div className="flex space-x-4">

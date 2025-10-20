@@ -89,7 +89,7 @@ export default function CVPage() {
               Özgeçmiş
             </h1>
             <p className="text-xl text-gray-600">
-              Arka planım ve niteliklerim hakkında detaylar için en güncel özgeçmişimi indirebilirsiniz
+              Eğitim ve niteliklerim hakkında detaylar için en güncel özgeçmişimi indirebilirsiniz
             </p>
             <div className="w-24 h-1 bg-bio-primary mx-auto mt-6"></div>
           </div>
