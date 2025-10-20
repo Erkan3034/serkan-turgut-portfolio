@@ -50,10 +50,10 @@ export default function ExperiencePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-bio-text mb-4">
-              Education & Experience
+              Eğitim ve Deneyim
             </h1>
             <p className="text-xl text-gray-600">
-              My journey in biomedical device technology and healthcare innovation
+              Biyomedikal cihaz teknolojisi ve sağlık inovasyonundaki yolculuğum
             </p>
             <div className="w-24 h-1 bg-bio-primary mx-auto mt-6"></div>
           </div>
@@ -105,10 +105,10 @@ export default function ExperiencePage() {
               <CardContent className="p-12 text-center">
                 <Briefcase className="h-16 w-16 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                  No Experience Data Available
+                  Deneyim Verisi Bulunamadı
                 </h3>
                 <p className="text-gray-500">
-                  Experience and education information will be displayed here once added through the admin panel.
+                  Admin panelinden eklendiğinde eğitim ve deneyim bilgileri burada görüntülenecektir.
                 </p>
               </CardContent>
             </Card>
@@ -118,7 +118,7 @@ export default function ExperiencePage() {
           <div className="mt-20">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl text-center">Core Competencies</CardTitle>
+                <CardTitle className="text-2xl text-center">Temel Yetkinlikler</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -126,9 +126,9 @@ export default function ExperiencePage() {
                     <div className="w-16 h-16 bg-bio-primary rounded-full flex items-center justify-center mx-auto mb-4">
                       <Briefcase className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Medical Device Technology</h3>
+                    <h3 className="font-semibold text-lg mb-2">Tıbbi Cihaz Teknolojisi</h3>
                     <p className="text-gray-600 text-sm">
-                      Comprehensive knowledge of medical device design, testing, and implementation
+                      Tıbbi cihaz tasarımı, testleri ve uygulaması konusunda kapsamlı bilgi
                     </p>
                   </div>
                   
@@ -136,9 +136,9 @@ export default function ExperiencePage() {
                     <div className="w-16 h-16 bg-bio-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                       <GraduationCap className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Healthcare Innovation</h3>
+                    <h3 className="font-semibold text-lg mb-2">Sağlıkta İnovasyon</h3>
                     <p className="text-gray-600 text-sm">
-                      Focus on developing solutions that improve patient care and outcomes
+                      Hasta bakımını ve sonuçlarını iyileştiren çözümler geliştirmeye odaklanma
                     </p>
                   </div>
                   
@@ -146,9 +146,9 @@ export default function ExperiencePage() {
                     <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Calendar className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Quality Assurance</h3>
+                    <h3 className="font-semibold text-lg mb-2">Kalite Güvencesi</h3>
                     <p className="text-gray-600 text-sm">
-                      Ensuring compliance with healthcare standards and regulations
+                      Sağlık standartları ve yönetmeliklerine uygunluğu sağlama
                     </p>
                   </div>
                 </div>
