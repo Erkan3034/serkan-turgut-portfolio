@@ -87,8 +87,8 @@ export default function HomePage() {
                   CV İndir
                 </Button>
                 {projectCount > 0 && (
-                  <Button variant="outline" size="lg">
-                    Projeleri Görüntüle
+                  <Button asChild variant="outline" size="lg">
+                    <a href="/projeler">Projeleri Görüntüle</a>
                   </Button>
                 )}
               </div>
