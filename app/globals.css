@@ -4,12 +4,20 @@
 
 /* Simple fade/scale-in animation for page content */
 @keyframes fadeScaleIn {
-  0% { opacity: 0; transform: scale(0.98); }
+  0% { opacity: 0; transform: scale(0.95); }
+  50% { opacity: 0.5; transform: scale(0.99); }
   100% { opacity: 1; transform: scale(1); }
 }
 
 .page-animate {
-  animation: fadeScaleIn 300ms ease-out both;
+  animation: fadeScaleIn 800ms cubic-bezier(0.16, 0.84, 0.44, 1) both;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-animate {
+    animation-duration: 0ms;
+  }
 }
 
 @layer base {
