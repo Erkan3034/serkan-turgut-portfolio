@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   keywords: 'biyomedikal, cihaz teknolojisi, portfolyo, mezun, mühendislik',
   authors: [{ name: 'Serkan Turgut' }],
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/images/favicon.ico',
+    shortcut: '/images/favicon.ico',
+    apple: '/images/favicon.ico',
   },
   openGraph: {
     title: 'Serkan Turgut - Biyomedikal Cihaz Teknolojisi Mezunu',
