@@ -7,30 +7,3 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[[redirects]]
-  from = "/admin"
-  to = "/admin/"
-  status = 301
-
-[[redirects]]
-  from = "/admin/login"
-  to = "/admin/login/"
-  status = 301
-
-[[redirects]]
-  from = "/admin/dashboard"
-  to = "/admin/dashboard/"
-  status = 301
-
-# Handle client-side routing for admin pages
-[[redirects]]
-  from = "/admin/*"
-  to = "/admin/"
-  status = 200
-
-# Handle client-side routing for blog pages
-[[redirects]]
-  from = "/blog/*"
-  to = "/blog/"
-  status = 200
