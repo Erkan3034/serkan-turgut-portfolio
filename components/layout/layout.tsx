@@ -16,7 +16,7 @@ export function Layout({ children, showBlog = false, showProjects = false, showC
         showProjects={showProjects} 
         showCertificates={showCertificates} 
       />
-      <main className="flex-1">
+      <main className="flex-1 page-animate">
         {children}
       </main>
       <Footer />
