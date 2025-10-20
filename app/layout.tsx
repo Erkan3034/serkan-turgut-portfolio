@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description: 'Biyomedikal cihaz teknolojisi alanındaki eğitim, projeler ve deneyimleri sergileyen portfolyo web sitesi.',
   keywords: 'biyomedikal, cihaz teknolojisi, portfolyo, mezun, mühendislik',
   authors: [{ name: 'Serkan Turgut' }],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     title: 'Serkan Turgut - Biyomedikal Cihaz Teknolojisi Mezunu',
     description: 'Biyomedikal cihaz teknolojisi alanındaki eğitim, projeler ve deneyimleri sergileyen portfolyo web sitesi.',
