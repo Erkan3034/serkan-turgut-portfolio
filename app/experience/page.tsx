@@ -7,12 +7,13 @@ import { Badge } from '@/components/ui/badge'
 import { Calendar, MapPin, Briefcase, GraduationCap } from 'lucide-react'
 import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
+import { FALLBACK_EXPERIENCES } from '@/lib/fallback-data'
 
 type Experience = Database['public']['Tables']['experience']['Row']
 
 export default function ExperiencePage() {
-  const [experiences, setExperiences] = useState<Experience[]>([])
-  const [loading, setLoading] = useState(true)
+  const [experiences, setExperiences] = useState<Experience[]>(FALLBACK_EXPERIENCES)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function fetchExperiences() {
@@ -22,9 +23,14 @@ export default function ExperiencePage() {
           { data: [], error: null },
           1500
         )
-        setExperiences(data || [])
+        if (data && data.length > 0) {
+          setExperiences(data)
+        } else {
+          setExperiences(FALLBACK_EXPERIENCES)
+        }
       } catch (error) {
         console.error('Error fetching experiences:', error)
+        setExperiences(FALLBACK_EXPERIENCES)
       } finally {
         setLoading(false)
       }

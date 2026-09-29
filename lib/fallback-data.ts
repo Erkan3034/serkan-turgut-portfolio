@@ -2,6 +2,50 @@ import { Database } from './supabase'
 
 export type Project = Database['public']['Tables']['projects']['Row']
 export type Blog = Database['public']['Tables']['blog']['Row']
+export type Experience = Database['public']['Tables']['experience']['Row']
+
+export const FALLBACK_EXPERIENCES: Experience[] = [
+  {
+    id: 'exp-1',
+    title: 'Biyomedikal Cihaz Teknikeri',
+    organization: 'Teknomedikal',
+    year: '2025 - Devam Ediyor',
+    description: 'Sahada ve teknik serviste tıbbi cihazların (özellikle Biyovent mekanik ventilatör cihazları) periyodik bakım ve arıza tespit süreçlerinin yürütülmesi. Müşteri kurumlardan (hastane, klinik) gelen arıza taleplerine teknik destek ve yerinde müdahale sağlanması. Kalibrasyon ölçümlerinin gerçekleştirilip teknik servis raporları halinde dokümante edilmesi. Yedek parça ve servis süreçlerinin tedarikçi firmalarla koordinasyonu.',
+    created_at: '2025-10-01T00:00:00Z',
+  },
+  {
+    id: 'exp-2',
+    title: 'Biyomedikal Cihaz Teknikeri Stajyeri',
+    organization: 'Prof. Dr. Lütfi Kırdar Şehir Hastanesi',
+    year: '2025',
+    description: 'Hastane biyomedikal mühendislik biriminde tıbbi cihazların rutin kontrol, periyodik bakım ve arıza analiz süreçlerine aktif katılım. Sterilizasyon ve enfeksiyon kontrol protokollerine uygun cihaz hazırlığı. Klinik personel ile teknik birim arasındaki arıza bildirim koordinasyonuna destek.',
+    created_at: '2025-05-01T00:00:00Z',
+  },
+  {
+    id: 'exp-3',
+    title: 'Biyomedikal Cihaz Teknolojisi',
+    organization: 'İstanbul Gedik Üniversitesi',
+    year: '2023',
+    description: 'Tıbbi cihaz teknolojisi, fizyolojik sinyal izleme, tıbbi enstrümantasyon, devre analizi, mikrodenetleyiciler ve kalibrasyon ilkeleri üzerine teorik ve uygulamalı önlisans eğitimi.',
+    created_at: '2023-06-01T00:00:00Z',
+  },
+  {
+    id: 'exp-4',
+    title: 'İşletme Müdürü',
+    organization: 'Yulaf Restaurant',
+    year: '2018 - 2022',
+    description: 'Günlük operasyon yönetimi, personel koordinasyonu, bütçe ve tedarik süreçlerinin uçtan uca yönetilmesi. Müşteri memnuniyeti ve süreç optimizasyonu.',
+    created_at: '2022-01-01T00:00:00Z',
+  },
+  {
+    id: 'exp-5',
+    title: 'Yabancı Dil Eğitimi (İngilizce B1)',
+    organization: 'English Time Dil Okulları',
+    year: '2017',
+    description: 'Genel İngilizce dil eğitimi ve mesleki teknik biyomedikal terminoloji.',
+    created_at: '2017-06-01T00:00:00Z',
+  },
+]
 
 export const FALLBACK_PROJECTS: Project[] = [
   {
