@@ -18,7 +18,7 @@ export const supabase = createClient<any>(supabaseUrl, supabaseAnonKey, {
 })
 
 // Safe query helper with timeout
-export async function safeQuery<T>(promise: PromiseLike<T>, fallback: T, timeoutMs = 2000): Promise<T> {
+export async function safeQuery<T = any>(promise: any, fallback: T, timeoutMs = 2000): Promise<T> {
   try {
     const timeoutPromise = new Promise<T>((resolve) => 
       setTimeout(() => resolve(fallback), timeoutMs)

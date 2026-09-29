@@ -21,6 +21,8 @@ export default function AdminExperienceNewPage() {
   const [year, setYear] = useState('')
   const [description, setDescription] = useState('')
 
+  const [errorText, setErrorText] = useState('')
+
   useEffect(() => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession()
@@ -34,6 +36,7 @@ export default function AdminExperienceNewPage() {
     e.preventDefault()
     setIsSaving(true)
     setSuccess(false)
+    setErrorText('')
     try {
       const { error } = await supabase.from('experience').insert([{ title, organization, year, description }])
       if (error) throw error
@@ -41,8 +44,9 @@ export default function AdminExperienceNewPage() {
       setTimeout(() => {
         router.push('/admin/experience')
       }, 1000)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Deneyim kaydedilirken hata:', err)
+      setErrorText(err.message || 'Deneyim kaydedilirken veritabanı hatası oluştu.')
     } finally {
       setIsSaving(false)
     }
@@ -128,6 +132,12 @@ export default function AdminExperienceNewPage() {
               </div>
             </CardContent>
           </Card>
+
+          {errorText && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-2 text-red-700 text-sm font-semibold">
+              <span>⚠️ {errorText}</span>
+            </div>
+          )}
 
           {success && (
             <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-emerald-800 text-sm font-semibold">

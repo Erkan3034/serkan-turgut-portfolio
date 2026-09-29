@@ -61,8 +61,8 @@ export default function HomePage() {
           ),
         ])
 
-        if (aboutRes.data && aboutRes.data.content) setAbout(aboutRes.data)
-        if (cvRes.data) setLatestCV(cvRes.data)
+        if (aboutRes.data && (aboutRes.data as any).content) setAbout(aboutRes.data as any)
+        if (cvRes.data) setLatestCV(cvRes.data as any)
         if (blogResult.count && blogResult.count > 0) setBlogCount(blogResult.count)
         if (certificateResult.count && certificateResult.count > 0) setCertificateCount(certificateResult.count)
       } catch (error) {

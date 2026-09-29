@@ -21,6 +21,8 @@ export default function AdminCertificateNewPage() {
   const [fileUrl, setFileUrl] = useState('')
   const [issuedDate, setIssuedDate] = useState('')
 
+  const [errorText, setErrorText] = useState('')
+
   useEffect(() => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession()
@@ -34,6 +36,7 @@ export default function AdminCertificateNewPage() {
     e.preventDefault()
     setIsSaving(true)
     setSuccess(false)
+    setErrorText('')
     try {
       const { error } = await supabase.from('certificates').insert([
         { title, description: description || null, file_url: fileUrl, issued_date: issuedDate || null }
@@ -43,8 +46,9 @@ export default function AdminCertificateNewPage() {
       setTimeout(() => {
         router.push('/admin/certificates')
       }, 1000)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Sertifika kaydedilirken hata:', err)
+      setErrorText(err.message || 'Sertifika kaydedilirken veritabanı hatası oluştu. Lütfen Supabase SQL tablolarının kurulu olduğunu kontrol edin.')
     } finally {
       setIsSaving(false)
     }
@@ -128,6 +132,12 @@ export default function AdminCertificateNewPage() {
               </div>
             </CardContent>
           </Card>
+
+          {errorText && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-2 text-red-700 text-sm font-semibold">
+              <span>⚠️ {errorText}</span>
+            </div>
+          )}
 
           {success && (
             <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-emerald-800 text-sm font-semibold">

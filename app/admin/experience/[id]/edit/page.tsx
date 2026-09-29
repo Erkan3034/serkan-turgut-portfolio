@@ -23,6 +23,7 @@ export default function AdminExperienceEditPage() {
   const [organization, setOrganization] = useState('')
   const [year, setYear] = useState('')
   const [description, setDescription] = useState('')
+  const [errorText, setErrorText] = useState('')
 
   useEffect(() => {
     const run = async () => {
@@ -44,6 +45,7 @@ export default function AdminExperienceEditPage() {
     e.preventDefault()
     setIsSaving(true)
     setSuccess(false)
+    setErrorText('')
     try {
       const { error } = await supabase
         .from('experience')
@@ -54,8 +56,9 @@ export default function AdminExperienceEditPage() {
       setTimeout(() => {
         router.push('/admin/experience')
       }, 1000)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Deneyim güncellenirken hata:', err)
+      setErrorText(err.message || 'Deneyim güncellenirken veritabanı hatası oluştu.')
     } finally {
       setIsSaving(false)
     }
@@ -121,6 +124,12 @@ export default function AdminExperienceEditPage() {
               </div>
             </CardContent>
           </Card>
+
+          {errorText && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-2 text-red-700 text-sm font-semibold">
+              <span>⚠️ {errorText}</span>
+            </div>
+          )}
 
           {success && (
             <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-emerald-800 text-sm font-semibold">

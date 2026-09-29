@@ -36,6 +36,7 @@ export default function BlogEditPage() {
   const [isSaving, setIsSaving] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const {
     register,
@@ -112,6 +113,7 @@ export default function BlogEditPage() {
   const onSubmit = async (data: BlogForm) => {
     setIsSaving(true)
     setSuccess(false)
+    setErrorMessage('')
     try {
       const slug = blog?.slug || generateSlug(data.title)
       const blogData: any = {
@@ -133,8 +135,9 @@ export default function BlogEditPage() {
       setTimeout(() => {
         router.push('/admin/blog')
       }, 1000)
-    } catch (error) {
+    } catch (error: any) {
       console.error('Blog güncellenirken hata:', error)
+      setErrorMessage(error.message || 'Blog güncellenirken hata oluştu.')
     } finally {
       setIsSaving(false)
     }
@@ -251,6 +254,12 @@ export default function BlogEditPage() {
               </div>
             </CardContent>
           </Card>
+
+          {errorMessage && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-2 text-red-700 text-sm font-semibold">
+              <span>⚠️ {errorMessage}</span>
+            </div>
+          )}
 
           {success && (
             <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-emerald-800 text-sm font-semibold">

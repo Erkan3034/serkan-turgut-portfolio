@@ -23,6 +23,7 @@ export default function AdminAboutPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [savedSuccess, setSavedSuccess] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const {
     register,
@@ -60,7 +61,7 @@ export default function AdminAboutPage() {
       if (data) {
         setValue('content', (data as any).content || '')
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Hakkımda metni yüklenirken hata:', error)
     } finally {
       setIsLoading(false)
@@ -70,8 +71,9 @@ export default function AdminAboutPage() {
   const onSubmit = async (data: AboutForm) => {
     setIsSaving(true)
     setSavedSuccess(false)
+    setErrorMessage('')
     try {
-      const { data: existing } = await supabase
+      const { data: existing, error: fetchErr } = await supabase
         .from('about')
         .select('id')
         .order('updated_at', { ascending: false })
@@ -97,8 +99,9 @@ export default function AdminAboutPage() {
       setTimeout(() => {
         router.push('/admin/dashboard')
       }, 1000)
-    } catch (error) {
+    } catch (error: any) {
       console.error('Hakkımda metni kaydedilirken hata:', error)
+      setErrorMessage(error.message || 'Veritabanına kaydedilirken hata oluştu. Lütfen Supabase SQL scriptinin çalıştırıldığından emin olun.')
     } finally {
       setIsSaving(false)
     }
@@ -170,6 +173,12 @@ export default function AdminAboutPage() {
               </div>
             </CardContent>
           </Card>
+
+          {errorMessage && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-2 text-red-700 text-sm font-semibold">
+              <span>⚠️ {errorMessage}</span>
+            </div>
+          )}
 
           {savedSuccess && (
             <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-emerald-800 text-sm font-semibold">

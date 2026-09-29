@@ -23,6 +23,7 @@ export default function AdminCertificateEditPage() {
   const [description, setDescription] = useState('')
   const [fileUrl, setFileUrl] = useState('')
   const [issuedDate, setIssuedDate] = useState('')
+  const [errorText, setErrorText] = useState('')
 
   useEffect(() => {
     const run = async () => {
@@ -44,6 +45,7 @@ export default function AdminCertificateEditPage() {
     e.preventDefault()
     setIsSaving(true)
     setSuccess(false)
+    setErrorText('')
     try {
       const { error } = await supabase
         .from('certificates')
@@ -54,8 +56,9 @@ export default function AdminCertificateEditPage() {
       setTimeout(() => {
         router.push('/admin/certificates')
       }, 1000)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Sertifika güncellenirken hata:', err)
+      setErrorText(err.message || 'Sertifika güncellenirken veritabanı hatası oluştu.')
     } finally {
       setIsSaving(false)
     }
@@ -121,6 +124,12 @@ export default function AdminCertificateEditPage() {
               </div>
             </CardContent>
           </Card>
+
+          {errorText && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-2 text-red-700 text-sm font-semibold">
+              <span>⚠️ {errorText}</span>
+            </div>
+          )}
 
           {success && (
             <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-emerald-800 text-sm font-semibold">
