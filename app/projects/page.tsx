@@ -9,14 +9,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ExternalLink, Github, Eye } from 'lucide-react'
 import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
+import { FALLBACK_PROJECTS } from '@/lib/fallback-data'
 import Image from 'next/image'
 
 type Project = Database['public']['Tables']['projects']['Row']
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>([])
+  const [projects, setProjects] = useState<Project[]>(FALLBACK_PROJECTS)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function fetchProjects() {
@@ -26,9 +27,14 @@ export default function ProjectsPage() {
           { data: [], error: null },
           1500
         )
-        setProjects(data || [])
+        if (data && data.length > 0) {
+          setProjects(data)
+        } else {
+          setProjects(FALLBACK_PROJECTS)
+        }
       } catch (error) {
         console.error('Error fetching projects:', error)
+        setProjects(FALLBACK_PROJECTS)
       } finally {
         setLoading(false)
       }

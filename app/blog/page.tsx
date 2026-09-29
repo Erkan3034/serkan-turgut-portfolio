@@ -7,14 +7,15 @@ import { Badge } from '@/components/ui/badge'
 import { Calendar, Clock } from 'lucide-react'
 import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
+import { FALLBACK_BLOGS } from '@/lib/fallback-data'
 import Image from 'next/image'
 import Link from 'next/link'
 
 type Blog = Database['public']['Tables']['blog']['Row']
 
 export default function BlogPage() {
-  const [blogs, setBlogs] = useState<Blog[]>([])
-  const [loading, setLoading] = useState(true)
+  const [blogs, setBlogs] = useState<Blog[]>(FALLBACK_BLOGS)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function fetchBlogs() {
@@ -24,9 +25,14 @@ export default function BlogPage() {
           { data: [], error: null },
           1500
         )
-        setBlogs(data || [])
+        if (data && data.length > 0) {
+          setBlogs(data)
+        } else {
+          setBlogs(FALLBACK_BLOGS)
+        }
       } catch (error) {
         console.error('Error fetching blogs:', error)
+        setBlogs(FALLBACK_BLOGS)
       } finally {
         setLoading(false)
       }

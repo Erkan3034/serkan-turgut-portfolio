@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Download, GraduationCap, Briefcase, Award, Loader2 } from 'lucide-react'
 import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
+import { FALLBACK_BLOGS, FALLBACK_PROJECTS } from '@/lib/fallback-data'
 
 type About = Database['public']['Tables']['about']['Row']
 type Blog = Database['public']['Tables']['blog']['Row']
@@ -21,8 +22,8 @@ export default function HomePage() {
   const router = useRouter()
   const [about, setAbout] = useState<About | null>(null)
   const [latestCV, setLatestCV] = useState<CVFile | null>(null)
-  const [blogCount, setBlogCount] = useState(0)
-  const [projectCount, setProjectCount] = useState(0)
+  const [blogCount, setBlogCount] = useState(FALLBACK_BLOGS.length)
+  const [projectCount, setProjectCount] = useState(FALLBACK_PROJECTS.length)
   const [certificateCount, setCertificateCount] = useState(0)
   const [downloading, setDownloading] = useState(false)
 
@@ -54,9 +55,9 @@ export default function HomePage() {
 
         if (aboutRes.data) setAbout(aboutRes.data)
         if (cvRes.data) setLatestCV(cvRes.data)
-        setBlogCount(blogResult.count || 0)
-        setProjectCount(projectResult.count || 0)
-        setCertificateCount(certificateResult.count || 0)
+        if (blogResult.count && blogResult.count > 0) setBlogCount(blogResult.count)
+        if (projectResult.count && projectResult.count > 0) setProjectCount(projectResult.count)
+        if (certificateResult.count && certificateResult.count > 0) setCertificateCount(certificateResult.count)
       } catch (error) {
         console.error('Error fetching data:', error)
       }

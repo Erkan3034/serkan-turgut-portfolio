@@ -6,8 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Calendar, Clock, ArrowLeft } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
+import { FALLBACK_BLOGS } from '@/lib/fallback-data'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -20,29 +21,34 @@ interface BlogPostPageProps {
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const [blog, setBlog] = useState<Blog | null>(null)
-  const [loading, setLoading] = useState(true)
+  const fallbackMatch = FALLBACK_BLOGS.find(b => b.slug === params.slug) || null
+  const [blog, setBlog] = useState<Blog | null>(fallbackMatch)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const { data, error } = await supabase
-          .from('blog')
-          .select('*')
-          .eq('slug', params.slug)
-          .single()
-
-        if (error) throw error
-        setBlog(data)
+        const { data } = await safeQuery(
+          supabase.from('blog').select('*').eq('slug', params.slug).single(),
+          { data: null, error: null },
+          1500
+        )
+        if (data) {
+          setBlog(data)
+        } else if (!fallbackMatch) {
+          const found = FALLBACK_BLOGS.find(b => b.slug === params.slug)
+          if (found) setBlog(found)
+        }
       } catch (error) {
         console.error('Error fetching blog:', error)
+        if (!blog && fallbackMatch) setBlog(fallbackMatch)
       } finally {
         setLoading(false)
       }
     }
 
     fetchBlog()
-  }, [params.slug])
+  }, [params.slug, fallbackMatch])
 
   if (loading) {
     return (
