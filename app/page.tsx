@@ -124,7 +124,11 @@ export default function HomePage() {
                 </Button>
                 {projectCount > 0 && (
                   <Button asChild variant="outline" size="lg">
+<<<<<<< HEAD
                     <Link href="/projects">Projeleri Görüntüle</Link>
+=======
+                    <a href="/projects">Projeleri Görüntüle</a>
+>>>>>>> b918fbbafb0534dfcd8a21898e4c1cc3c99c38e9
                   </Button>
                 )}
               </div>

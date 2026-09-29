@@ -1,18 +1,16 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import { Layout } from '@/components/layout/layout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { Calendar, Clock, ArrowLeft } from 'lucide-react'
-import { supabase, safeQuery } from '@/lib/supabase'
-import { Database } from '@/lib/supabase'
 import { FALLBACK_BLOGS } from '@/lib/fallback-data'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type Blog = Database['public']['Tables']['blog']['Row']
+export function generateStaticParams() {
+  return FALLBACK_BLOGS.map((post) => ({
+    slug: post.slug,
+  }))
+}
 
 interface BlogPostPageProps {
   params: {
@@ -21,44 +19,7 @@ interface BlogPostPageProps {
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const fallbackMatch = FALLBACK_BLOGS.find(b => b.slug === params.slug) || null
-  const [blog, setBlog] = useState<Blog | null>(fallbackMatch)
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    async function fetchBlog() {
-      try {
-        const { data } = await safeQuery(
-          supabase.from('blog').select('*').eq('slug', params.slug).single(),
-          { data: null, error: null },
-          1500
-        )
-        if (data) {
-          setBlog(data)
-        } else if (!fallbackMatch) {
-          const found = FALLBACK_BLOGS.find(b => b.slug === params.slug)
-          if (found) setBlog(found)
-        }
-      } catch (error) {
-        console.error('Error fetching blog:', error)
-        if (!blog && fallbackMatch) setBlog(fallbackMatch)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchBlog()
-  }, [params.slug, fallbackMatch])
-
-  if (loading) {
-    return (
-      <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-bio-primary"></div>
-        </div>
-      </Layout>
-    )
-  }
+  const blog = FALLBACK_BLOGS.find((b) => b.slug === params.slug) || null
 
   if (!blog) {
     return (
