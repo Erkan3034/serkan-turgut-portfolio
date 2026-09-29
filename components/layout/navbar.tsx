@@ -12,7 +12,6 @@ const navigation = [
   { name: 'CV', href: '/cv' },
   { name: 'Deneyim', href: '/experience' },
   { name: 'Blog', href: '/blog' },
-  { name: 'Sertifikalar', href: '/certificates' },
   { name: 'İletişim', href: '/contact' },
 ]
 

@@ -10,6 +10,10 @@ import { Label } from '@/components/ui/label'
 import { ArrowLeft, Save, Trash2, CheckCircle2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
+export function generateStaticParams() {
+  return []
+}
+
 export default function AdminExperienceEditPage() {
   const router = useRouter()
   const params = useParams()

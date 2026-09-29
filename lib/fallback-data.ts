@@ -39,9 +39,9 @@ export const FALLBACK_EXPERIENCES: Experience[] = [
     id: 'exp-2',
     title: 'Biyomedikal Cihaz Teknikeri Stajyeri',
     organization: 'Prof. Dr. Lütfi Kırdar Şehir Hastanesi',
-    year: '2025',
+    year: '2024 (Staj Dönemi)',
     description: 'Hastane biyomedikal mühendislik birimi bünyesinde hasta başı monitörleri, EKG, defibrilatör ve infüzyon pompalarının rutin periyodik kontrollerine ve arıza analiz süreçlerine katılım. Medikal cihaz sterilizasyon ve enfeksiyon kontrol protokollerine uygun hazırlık süreçleri. Klinik personel ile teknik servis arasındaki arıza bildirim ve kayıt akışının yönetilmesi.',
-    created_at: '2025-05-01T00:00:00Z',
+    created_at: '2024-05-01T00:00:00Z',
   },
   {
     id: 'exp-3',

@@ -187,23 +187,53 @@ export default function HomePage() {
       </section>
 
       {/* ABOUT ME SECTION (HAKKIMDA) */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-50/50 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-50/40 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"></div>
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bio-primary/10 text-bio-primary text-xs font-semibold mb-3 border border-bio-primary/20">
+              <Activity className="h-3.5 w-3.5 animate-pulse" />
+              <span>Klinik Güvenilirlik & Mühendislik Disiplini</span>
+            </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-              Hakkımda & Çalışma Disiplinim
+              Hakkımda & Mesleki Yaklaşımım
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto">
-              Sağlık teknolojilerinde yüksek güvenilirlik ve hasta güvenliği odaklı teknik servis yaklaşımı.
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Sağlık teknolojilerinde yüksek güvenilirlik, hasta hayatı önceliği ve titiz teknik servis prensipleri.
             </p>
-            <div className="w-20 h-1 bg-bio-primary mx-auto mt-4 rounded-full"></div>
+            <div className="w-16 h-1 bg-gradient-to-r from-bio-primary to-emerald-400 mx-auto mt-4 rounded-full"></div>
+          </div>
+
+          {/* Quick Metrics Bar on About section */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-8">
+            <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4 text-center shadow-sm">
+              <div className="text-bio-primary font-bold text-lg sm:text-xl">2+ Yıl</div>
+              <div className="text-slate-600 text-xs font-medium">Saha & Teknik Servis Deneyimi</div>
+            </div>
+            <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4 text-center shadow-sm">
+              <div className="text-emerald-600 font-bold text-lg sm:text-xl">Biyovent & Ventilatör</div>
+              <div className="text-slate-600 text-xs font-medium">Yaşam Destek Cihazları Uzmanlığı</div>
+            </div>
+            <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4 text-center shadow-sm">
+              <div className="text-blue-600 font-bold text-lg sm:text-xl">%100 Standartlara Uyum</div>
+              <div className="text-slate-600 text-xs font-medium">Medikal Kalibrasyon & Raporlama</div>
+            </div>
           </div>
           
-          <Card className="border border-slate-200/80 shadow-md rounded-2xl overflow-hidden bg-slate-50/40">
-            <CardContent className="p-6 sm:p-10">
+          <Card className="border border-slate-200 shadow-md rounded-2xl overflow-hidden bg-gradient-to-br from-white via-slate-50/50 to-teal-50/20">
+            <CardContent className="p-6 sm:p-10 md:p-12">
               {about?.content && about.content.trim().length > 0 ? (
                 <div 
-                  className="prose prose-slate prose-lg max-w-none text-slate-700 leading-relaxed"
+                  className="prose prose-slate prose-base sm:prose-lg max-w-none text-slate-700 leading-relaxed
+                    prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight
+                    prose-h3:text-lg sm:prose-h3:text-xl prose-h3:text-bio-primary prose-h3:mt-6 prose-h3:mb-3 prose-h3:pb-1.5 prose-h3:border-b prose-h3:border-slate-100
+                    prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4 text-sm sm:text-base
+                    prose-ul:my-4 prose-ul:space-y-2.5 prose-ul:list-disc prose-ul:pl-5
+                    prose-li:text-slate-700 prose-li:text-sm sm:prose-li:text-base
+                    prose-strong:text-slate-900 prose-strong:font-semibold"
                   dangerouslySetInnerHTML={{ __html: about.content }}
                 />
               ) : (

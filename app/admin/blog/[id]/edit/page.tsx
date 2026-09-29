@@ -25,6 +25,10 @@ const blogSchema = z.object({
 
 type BlogForm = z.infer<typeof blogSchema>
 
+export function generateStaticParams() {
+  return []
+}
+
 export default function BlogEditPage() {
   const router = useRouter()
   const params = useParams()

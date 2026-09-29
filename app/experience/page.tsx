@@ -116,7 +116,7 @@ export default function ExperiencePage() {
             <div className="space-y-8 md:space-y-12">
               {experiences.map((exp, index) => {
                 const isEven = index % 2 === 0
-                const isCurrent = exp.year.toLowerCase().includes('devam') || exp.year.includes('2025')
+                const isCurrent = exp.year.toLowerCase().includes('devam') && !exp.title.toLowerCase().includes('staj')
                 const tags = getExperienceTags(exp)
 
                 return (
