@@ -11,7 +11,6 @@ const navigation = [
   { name: 'Ana Sayfa', href: '/' },
   { name: 'CV', href: '/cv' },
   { name: 'Deneyim', href: '/experience' },
-  { name: 'Projeler', href: '/projects' },
   { name: 'Blog', href: '/blog' },
   { name: 'Sertifikalar', href: '/certificates' },
   { name: 'İletişim', href: '/contact' },
@@ -19,17 +18,15 @@ const navigation = [
 
 interface NavbarProps {
   showBlog?: boolean
-  showProjects?: boolean
   showCertificates?: boolean
 }
 
-export function Navbar({ showBlog = true, showProjects = true, showCertificates = true }: NavbarProps) {
+export function Navbar({ showBlog = true, showCertificates = true }: NavbarProps) {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const filteredNavigation = navigation.filter(item => {
     if (item.name === 'Blog' && !showBlog) return false
-    if (item.name === 'Projeler' && !showProjects) return false
     if (item.name === 'Sertifikalar' && !showCertificates) return false
     return true
   })

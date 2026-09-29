@@ -133,57 +133,55 @@ export default function CertificatesPage() {
           ) : (
             <Card>
               <CardContent className="p-12 text-center">
-                <Award className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                  No Certificates Available
+                <Award className="h-16 w-16 text-slate-400 mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-slate-800 mb-2">
+                  Kayıtlı Sertifika Bulunmuyor
                 </h3>
-                <p className="text-gray-500">
-                  Certificates will be displayed here once uploaded through the admin panel.
+                <p className="text-slate-500 text-sm">
+                  Yönetim panelinden sertifika yüklendiğinde burada listelenecektir.
                 </p>
               </CardContent>
             </Card>
           )}
 
-          {/* Additional Information */}
-          <div className="mt-20">
-            <Card>
+          {/* Mesleki Gelişim & Standartlar */}
+          <div className="mt-16">
+            <Card className="border-slate-200 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-2xl text-center">Professional Development</CardTitle>
+                <CardTitle className="text-2xl text-center font-bold text-slate-900">Mesleki Gelişim & Standartlar</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-gray-700 text-center">
-                  Continuous learning and professional development are essential in the rapidly evolving field 
-                  of biomedical device technology. These certifications demonstrate my commitment to staying 
-                  current with industry standards and best practices.
+                <p className="text-slate-600 text-center max-w-2xl mx-auto leading-relaxed text-sm sm:text-base">
+                  Biyomedikal cihaz teknolojisi ve klinik mühendislik alanında güncel standartlar, kalibrasyon gereksinimleri ve teknik eğitimlerle sürekli gelişim önceliğimdir.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-bio-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Award className="h-8 w-8 text-white" />
+                  <div className="text-center p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <div className="w-14 h-14 bg-bio-primary rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md">
+                      <Award className="h-7 w-7 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Industry Standards</h3>
-                    <p className="text-gray-600 text-sm">
-                      Certifications in ISO standards and regulatory compliance
+                    <h3 className="font-bold text-base text-slate-900 mb-1">Medikal Standartlar</h3>
+                    <p className="text-slate-500 text-xs leading-relaxed">
+                      IEC 62353, IEC 60601 ve Sağlıkta Kalite Standartlarına (SKS) uyum
                     </p>
                   </div>
                   
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-bio-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                      <FileText className="h-8 w-8 text-white" />
+                  <div className="text-center p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <div className="w-14 h-14 bg-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md">
+                      <FileText className="h-7 w-7 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Technical Skills</h3>
-                    <p className="text-gray-600 text-sm">
-                      Specialized training in medical device technology and testing
+                    <h3 className="font-bold text-base text-slate-900 mb-1">Teknik Yetkinlikler</h3>
+                    <p className="text-slate-500 text-xs leading-relaxed">
+                      Mekanik ventilatör, EKG ve anestezi cihazlarında arıza tespiti ve test uzmanlığı
                     </p>
                   </div>
                   
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Calendar className="h-8 w-8 text-white" />
+                  <div className="text-center p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <div className="w-14 h-14 bg-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md">
+                      <Calendar className="h-7 w-7 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Continuous Learning</h3>
-                    <p className="text-gray-600 text-sm">
-                      Ongoing education to stay current with industry developments
+                    <h3 className="font-bold text-base text-slate-900 mb-1">Sürekli Gelişim</h3>
+                    <p className="text-slate-500 text-xs leading-relaxed">
+                      Klinik enstrümantasyon ve yeni nesil sağlık teknolojileri takibi
                     </p>
                   </div>
                 </div>

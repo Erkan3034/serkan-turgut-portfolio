@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { Layout } from '@/components/layout/layout'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Calendar, Clock } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Calendar, Clock, ArrowRight, BookOpen, Activity, Sparkles } from 'lucide-react'
 import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
 import { FALLBACK_BLOGS } from '@/lib/fallback-data'
@@ -44,8 +45,8 @@ export default function BlogPage() {
   if (loading) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-bio-primary"></div>
+        <div className="min-h-[70vh] flex items-center justify-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-bio-primary"></div>
         </div>
       </Layout>
     )
@@ -53,87 +54,113 @@ export default function BlogPage() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-white py-20">
+      <div className="min-h-screen bg-slate-50/50 py-12 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-bio-text mb-4">
-              Blog
+          
+          {/* Header Section */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bio-primary/10 text-bio-primary text-xs md:text-sm font-semibold mb-4 border border-bio-primary/20">
+              <Activity className="h-4 w-4" />
+              <span>Teknik & Klinik Makaleler</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+              Biyomedikal Teknoloji Blogu
             </h1>
-            <p className="text-xl text-gray-600">
-              Biyomedikal teknoloji ve sağlık inovasyonu üzerine paylaşımlar
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+              Yoğun bakım ventilatörleri, kalibrasyon standartları, defibrilatör sistemleri ve klinik enstrümantasyon üzerine teknik rehberler.
             </p>
-            <div className="w-24 h-1 bg-bio-primary mx-auto mt-6"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-bio-primary to-bio-secondary rounded-full mx-auto mt-6"></div>
           </div>
 
+          {/* BLOG GRID */}
           {blogs.length > 0 ? (
-            <div className="space-y-8">
-              {blogs.map((blog) => (
-                <Card key={blog.id} className="hover:shadow-lg transition-shadow overflow-hidden">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {blog.cover_image && (
-                      <div className="md:col-span-1">
-                        <div className="aspect-video relative">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {blogs.map((blog, idx) => {
+                const wordCount = blog.content.replace(/<[^>]*>/g, '').split(/\s+/).length
+                const readTime = Math.max(1, Math.ceil(wordCount / 180))
+
+                return (
+                  <Card 
+                    key={blog.id || idx} 
+                    className="group flex flex-col justify-between overflow-hidden bg-white border border-slate-200/80 rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                  >
+                    <div>
+                      {/* Optional Cover Image */}
+                      {blog.cover_image && (
+                        <div className="aspect-video relative overflow-hidden bg-slate-100">
                           <Image
                             src={blog.cover_image}
                             alt={blog.title}
                             fill
-                            className="object-cover"
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                         </div>
-                      </div>
-                    )}
-                    <div className={`${blog.cover_image ? 'md:col-span-2' : 'md:col-span-3'} p-6`}>
-                      <CardHeader className="p-0 mb-4">
-                        <CardTitle className="text-2xl mb-2">
-                          <Link 
-                            href={`/blog/${blog.slug}`}
-                            className="hover:text-bio-primary transition-colors"
-                          >
-                            {blog.title}
-                          </Link>
-                        </CardTitle>
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
-                          <div className="flex items-center">
-                            <Calendar className="h-4 w-4 mr-2" />
-                            <span>{new Date(blog.created_at).toLocaleDateString()}</span>
+                      )}
+
+                      <div className="p-6">
+                        {/* Meta Tags */}
+                        <div className="flex items-center justify-between text-xs text-slate-500 font-medium mb-3">
+                          <div className="flex items-center gap-1.5">
+                            <Calendar className="h-3.5 w-3.5 text-bio-primary" />
+                            <span>
+                              {new Date(blog.created_at).toLocaleDateString('tr-TR', {
+                                day: 'numeric',
+                                month: 'short',
+                                year: 'numeric'
+                              })}
+                            </span>
                           </div>
-                          <div className="flex items-center">
-                            <Clock className="h-4 w-4 mr-2" />
-                            <span>{Math.ceil(blog.content.split(' ').length / 200)} dk okuma</span>
+                          <div className="flex items-center gap-1.5">
+                            <Clock className="h-3.5 w-3.5 text-bio-primary" />
+                            <span>{readTime} dk okuma</span>
                           </div>
                         </div>
-                      </CardHeader>
-                      <CardContent className="p-0">
-                        <p className="text-gray-700 mb-4 line-clamp-3">
-                          {blog.excerpt || blog.content.replace(/<[^>]*>/g, '').substring(0, 200) + '...'}
+
+                        {/* Title */}
+                        <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-snug group-hover:text-bio-primary transition-colors line-clamp-2">
+                          <Link href={`/blog/${blog.slug}`}>
+                            {blog.title}
+                          </Link>
+                        </h2>
+
+                        {/* Excerpt */}
+                        <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                          {blog.excerpt || blog.content.replace(/<[^>]*>/g, '').substring(0, 150) + '...'}
                         </p>
-                        <Link 
-                          href={`/blog/${blog.slug}`}
-                          className="text-bio-primary hover:text-bio-primary/80 font-medium"
-                        >
-                          Devamını Oku →
-                        </Link>
-                      </CardContent>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              ))}
+
+                    {/* Bottom CTA Link */}
+                    <div className="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-xs font-semibold text-slate-400">Teknik Kılavuz</span>
+                      <Link 
+                        href={`/blog/${blog.slug}`}
+                        className="inline-flex items-center text-sm font-bold text-bio-primary hover:text-bio-primary/80 transition-colors group/link"
+                      >
+                        <span>Detayları İncele</span>
+                        <ArrowRight className="h-4 w-4 ml-1.5 transition-transform group-hover/link:translate-x-1" />
+                      </Link>
+                    </div>
+                  </Card>
+                )
+              })}
             </div>
           ) : (
-            <Card>
+            <Card className="max-w-md mx-auto shadow-sm">
               <CardContent className="p-12 text-center">
-                <div className="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Calendar className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-bio-primary">
+                  <BookOpen className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                  Blog Yazısı Bulunamadı
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  Henüz Blog Yazısı Eklenmedi
                 </h3>
-                <p className="text-gray-500">
-                  Admin panelinden yayınlandığında blog yazıları burada görüntülenecektir.
+                <p className="text-slate-500 text-sm">
+                  Admin panelinden yeni makale eklendiğinde burada görüntülenecektir.
                 </p>
               </CardContent>
             </Card>
           )}
+
         </div>
       </div>
     </Layout>

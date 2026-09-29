@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Serkan Turgut - Biyomedikal Cihaz Teknolojisi Mezunu',
+  title: 'Serkan Turgut - Biyomedikal Cihaz Teknikeri',
   description: 'Biyomedikal cihaz teknolojisi alanındaki eğitim, projeler ve deneyimleri sergileyen portfolyo web sitesi.',
   keywords: 'biyomedikal, cihaz teknolojisi, portfolyo, mezun, mühendislik',
   authors: [{ name: 'Serkan Turgut' }],
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Serkan Turgut - Biyomedikal Cihaz Teknolojisi Mezunu',
+    title: 'Serkan Turgut - Biyomedikal Cihaz Teknikeri',
     description: 'Biyomedikal cihaz teknolojisi alanındaki eğitim, projeler ve deneyimleri sergileyen portfolyo web sitesi.',
     type: 'website',
   },

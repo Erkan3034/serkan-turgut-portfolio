@@ -3,6 +3,28 @@ import { Database } from './supabase'
 export type Project = Database['public']['Tables']['projects']['Row']
 export type Blog = Database['public']['Tables']['blog']['Row']
 export type Experience = Database['public']['Tables']['experience']['Row']
+export type About = Database['public']['Tables']['about']['Row']
+
+export const FALLBACK_ABOUT: About = {
+  id: 'about-default',
+  content: `
+    <h3>Biyomedikal Cihaz Teknolojisinde Güvenilir ve Çözüm Odaklı Yaklaşım</h3>
+    <p>Biyomedikal cihazların bakım, onarım, kalibrasyon ve arıza tespiti alanında 2 yılı aşkın saha ve teknik servis deneyimine sahip <strong>Biyomedikal Cihaz Teknikeri</strong>yim. Sağlık sektöründe hasta hayatının ve klinik süreçlerin doğrudan bağlı olduğu kritik medikal cihazların kesintisiz, güvenli ve yüksek hassasiyetle çalışmasını sağlamaya odaklanıyorum.</p>
+    
+    <h3>Uzmanlık ve Yetkinlik Alanlarım</h3>
+    <p>Özellikle <strong>Mekanik Ventilatörler (Biyovent vb.)</strong>, <strong>Elektrokardiyografi (EKG) cihazları</strong>, <strong>Hasta Başı Monitörleri</strong>, <strong>Anestezi Sistemleri</strong> ve genel klinik enstrümantasyon üzerinde periyodik/önleyici bakım, arıza analizi, kalibrasyon doğruluk ölçümleri ve fonksiyonel kontrol süreçlerini titizlikle yürütüyorum.</p>
+    
+    <h3>Çalışma İlkelerim</h3>
+    <ul>
+      <li><strong>Sistematik Arıza Analizi:</strong> Arıza durumlarında hızlı müdahale, kök neden analizi ve kalıcı teknik çözümler üretme.</li>
+      <li><strong>Kalite ve Standartlara Uyum:</strong> Uluslararası medikal güvenlik ve kalibrasyon standartlarına uygun periyodik kontrol ve eksiksiz teknik servis raporlaması.</li>
+      <li><strong>Klinik & Teknik Koordinasyon:</strong> Hekimler, hemşireler, hastane biyomedikal mühendislik birimleri ve tedarikçi firmalar arasında kesintisiz ve yapıcı iletişim.</li>
+    </ul>
+    
+    <p>Hedefim; sürekli gelişen sağlık teknolojilerini yakından takip ederek, biyomedikal mühendislik ve teknik servis alanında sağlık kuruluşlarına ve medikal teknoloji firmalarına değer katmaktır.</p>
+  `,
+  updated_at: '2025-10-20T00:00:00Z',
+}
 
 export const FALLBACK_EXPERIENCES: Experience[] = [
   {
@@ -10,7 +32,7 @@ export const FALLBACK_EXPERIENCES: Experience[] = [
     title: 'Biyomedikal Cihaz Teknikeri',
     organization: 'Teknomedikal',
     year: '2025 - Devam Ediyor',
-    description: 'Sahada ve teknik serviste tıbbi cihazların (özellikle Biyovent mekanik ventilatör cihazları) periyodik bakım ve arıza tespit süreçlerinin yürütülmesi. Müşteri kurumlardan (hastane, klinik) gelen arıza taleplerine teknik destek ve yerinde müdahale sağlanması. Kalibrasyon ölçümlerinin gerçekleştirilip teknik servis raporları halinde dokümante edilmesi. Yedek parça ve servis süreçlerinin tedarikçi firmalarla koordinasyonu.',
+    description: 'Sahada ve teknik serviste tıbbi cihazların (özellikle Biyovent mekanik ventilatör sistemleri) periyodik koruyucu bakımı ve arıza tespit süreçlerinin yürütülmesi. Müşteri kurumlardan (hastane, tıp merkezi, klinik) gelen teknik destek taleplerine yerinde hızlı müdahale. Kalibrasyon ve fonksiyonel testlerin gerçekleştirilip teknik servis formlarının eksiksiz raporlanması. Yedek parça ve tedarikçi koordinasyonu.',
     created_at: '2025-10-01T00:00:00Z',
   },
   {
@@ -18,15 +40,15 @@ export const FALLBACK_EXPERIENCES: Experience[] = [
     title: 'Biyomedikal Cihaz Teknikeri Stajyeri',
     organization: 'Prof. Dr. Lütfi Kırdar Şehir Hastanesi',
     year: '2025',
-    description: 'Hastane biyomedikal mühendislik biriminde tıbbi cihazların rutin kontrol, periyodik bakım ve arıza analiz süreçlerine aktif katılım. Sterilizasyon ve enfeksiyon kontrol protokollerine uygun cihaz hazırlığı. Klinik personel ile teknik birim arasındaki arıza bildirim koordinasyonuna destek.',
+    description: 'Hastane biyomedikal mühendislik birimi bünyesinde hasta başı monitörleri, EKG, defibrilatör ve infüzyon pompalarının rutin periyodik kontrollerine ve arıza analiz süreçlerine katılım. Medikal cihaz sterilizasyon ve enfeksiyon kontrol protokollerine uygun hazırlık süreçleri. Klinik personel ile teknik servis arasındaki arıza bildirim ve kayıt akışının yönetilmesi.',
     created_at: '2025-05-01T00:00:00Z',
   },
   {
     id: 'exp-3',
-    title: 'Biyomedikal Cihaz Teknolojisi',
+    title: 'Biyomedikal Cihaz Teknolojisi (Önlisans)',
     organization: 'İstanbul Gedik Üniversitesi',
     year: '2023',
-    description: 'Tıbbi cihaz teknolojisi, fizyolojik sinyal izleme, tıbbi enstrümantasyon, devre analizi, mikrodenetleyiciler ve kalibrasyon ilkeleri üzerine teorik ve uygulamalı önlisans eğitimi.',
+    description: 'Biyomedikal cihaz teknolojisi, tıbbi enstrümantasyon, fizyolojik sinyal izleme, elektronik devre analizi, mikrodenetleyiciler ve tıbbi kalibrasyon standartları üzerine teorik ve laboratuvar uygulamalı eğitimi.',
     created_at: '2023-06-01T00:00:00Z',
   },
   {
@@ -34,7 +56,7 @@ export const FALLBACK_EXPERIENCES: Experience[] = [
     title: 'İşletme Müdürü',
     organization: 'Yulaf Restaurant',
     year: '2018 - 2022',
-    description: 'Günlük operasyon yönetimi, personel koordinasyonu, bütçe ve tedarik süreçlerinin uçtan uca yönetilmesi. Müşteri memnuniyeti ve süreç optimizasyonu.',
+    description: 'Günlük operasyonel süreçlerin, personel koordinasyonunun, bütçe ve tedarik zincirinin uçtan uca yönetilmesi. Müşteri memnuniyeti ve kriz anlarında hızlı problem çözme deneyimi.',
     created_at: '2022-01-01T00:00:00Z',
   },
   {
@@ -42,171 +64,165 @@ export const FALLBACK_EXPERIENCES: Experience[] = [
     title: 'Yabancı Dil Eğitimi (İngilizce B1)',
     organization: 'English Time Dil Okulları',
     year: '2017',
-    description: 'Genel İngilizce dil eğitimi ve mesleki teknik biyomedikal terminoloji.',
+    description: 'Genel İngilizce dil eğitimi ve mesleki teknik medikal terminoloji.',
     created_at: '2017-06-01T00:00:00Z',
   },
 ]
 
-export const FALLBACK_PROJECTS: Project[] = [
-  {
-    id: 'fallback-proj-1',
-    title: 'Hasta Başı Monitör Kalibrasyon ve Test İstasyonu',
-    description: 'Yoğun bakım ve acil servis hasta başı monitörlerinin EKG, NIBP, SpO2 ve solunum parametrelerinin kalibrasyon doğruluk testlerini simüle eden ve raporlayan taşınabilir test prototipi.',
-    tags: ['Biyomedikal Kalibrasyon', 'EKG Simülatörü', 'SpO2 Testi', 'Sağlık Güvenliği'],
-    github_link: 'https://github.com/Erkan3034',
-    live_demo: null,
-    image_url: null,
-    created_at: '2025-10-15T10:00:00Z',
-  },
-  {
-    id: 'fallback-proj-2',
-    title: 'Mikrodenetleyici Tabanlı Kablosuz EKG Telemetri Cihazı',
-    description: 'AD8232 analog ön uç devresi ve ESP32 mikrodenetleyici kullanılarak geliştirilen 3-kanallı kablosuz EKG telemetri sistemi. Hastanın kardiyak sinyallerini gerçek zamanlı web arayüzüne aktarır.',
-    tags: ['ESP32', 'AD8232', 'Biyomedikal Sensörler', 'IoT', 'C++'],
-    github_link: 'https://github.com/Erkan3034',
-    live_demo: null,
-    image_url: null,
-    created_at: '2025-09-20T14:30:00Z',
-  },
-  {
-    id: 'fallback-proj-3',
-    title: 'Ventilatör ve Solunum Devresi Akış Sensörü Analizörü',
-    description: 'Mekanik ventilatörlerin tidal hacim, tepe inspiratuar basınç (PIP) ve PEEP değerlerini yüksek hassasiyetli diferansiyel basınç sensörleriyle ölçen akış analiz sistemi.',
-    tags: ['Ventilatör', 'Solunum Mekaniği', 'Basınç Sensörleri', 'Kalite Kontrol'],
-    github_link: 'https://github.com/Erkan3034',
-    live_demo: null,
-    image_url: null,
-    created_at: '2025-08-10T09:15:00Z',
-  },
-  {
-    id: 'fallback-proj-4',
-    title: 'Yenidoğan Kuvözü Sıcaklık & Nem Akıllı Kontrol Ünitesi',
-    description: 'Yenidoğan yoğun bakım kuvözlerinde optimum mikro çevre koşullarını sağlayan, PID sıcaklık ve nem denetleyici algoritmasına sahip güvenli alarm sistemi.',
-    tags: ['Yenidoğan Kuvözü', 'PID Kontrol', 'Sensör Entegrasyonu', 'Otomasyon'],
-    github_link: 'https://github.com/Erkan3034',
-    live_demo: null,
-    image_url: null,
-    created_at: '2025-07-05T16:00:00Z',
-  },
-  {
-    id: 'fallback-proj-5',
-    title: 'Tıbbi Cihaz Envanter ve Periyodik Bakım Takip Sistemi',
-    description: 'Hastanelerdeki biyomedikal cihazların bakım, kalibrasyon periyotları, arıza kayıtları ve parça değişim süreçlerini barkod/karekod ile yöneten dijital takip platformu.',
-    tags: ['Tıbbi Cihaz Yönetimi', 'Envanter', 'Veritabanı', 'Python', 'Web'],
-    github_link: 'https://github.com/Erkan3034',
-    live_demo: null,
-    image_url: null,
-    created_at: '2025-06-12T11:45:00Z',
-  },
-]
+export const FALLBACK_PROJECTS: Project[] = []
 
 export const FALLBACK_BLOGS: Blog[] = [
   {
     id: 'fallback-blog-1',
-    title: 'Biyomedikal Cihazlarda Kalibrasyonun Hayati Önemi ve Standartlar',
+    title: 'Biyomedikal Cihazlarda Kalibrasyon ve Metrolojik Doğrulama Standartları',
     slug: 'biyomedikal-cihazlarda-kalibrasyonun-onemi',
-    excerpt: 'Tıbbi cihazların doğru ve güvenilir ölçüm yapabilmesi için kalibrasyon periyotları, uluslararası standartlar ve klinik doğruluk kriterleri.',
+    excerpt: 'Tıbbi cihazların tanı ve tedavideki ölçüm doğruluğunu garanti altına alan kalibrasyon periyotları, uluslararası standartlar (IEC 62353) ve metrolojik test yöntemleri.',
     content: `
       <h2>Tıbbi Cihazlarda Kalibrasyon Neden Hayatidir?</h2>
-      <p>Hastanelerde teşhis ve tedavi süreçlerinde kullanılan biyomedikal cihazların ölçüm doğruluğu, hasta hayatıyla doğrudan ilişkilidir. Bir infüzyon pompasının yanlış doz vermesi veya hasta başı monitörünün hatalı SpO2 değeri göstermesi kritik sonuçlar doğurabilir.</p>
+      <p>Hastanelerde teşhis ve tedavi süreçlerinde kullanılan biyomedikal cihazların ölçüm doğruluğu doğrudan insan hayatına etki eder. Bir infüzyon pompasının hastaya yanlış hızda ilaç vermesi veya hasta başı monitörünün hatalı SpO2/EKG parametresi okuması telafisi imkansız klinik sonuçlar doğurabilir.</p>
       
-      <h3>Kalibrasyon ve Doğrulama Arasındaki Fark</h3>
-      <p>Kalibrasyon, doğruluğu bilinen bir referans standart cihaz ile test edilen cihaz arasındaki sapmanın belirlenmesi işlemidir. Belirlenen sapma sınır değerleri aştığında cihazın ayarlanması veya servise alınması gerekir.</p>
+      <h3>Kalibrasyon ve Doğrulama Arasındaki Kritik Fark</h3>
+      <p><strong>Kalibrasyon</strong>, doğruluğu uluslararası standartlara izlenebilir bir referans test cihazı (analizör) ile test edilen cihaz arasındaki sapmanın sayısal olarak tespit edilmesidir. <strong>Doğrulama (Verification)</strong> ise cihazın belirlenen tolerans limitleri içinde kalıp kalmadığının resmi olarak onaylanmasıdır.</p>
       
-      <h3>Temel Kalibrasyon Parametreleri</h3>
+      <h3>Uygulanan Temel Biyomedikal Güvenlik & Kalibrasyon Testleri</h3>
       <ul>
-        <li><strong>Elektriksel Güvenlik Testleri:</strong> IEC 62353 ve IEC 60601 standartlarına göre gövde kaçak akımı ve toprak sürekliliği ölçümleri.</li>
-        <li><strong>Defibrilatör Enerji Çıkış Testi:</strong> Joules cinsinden verilen enerjinin nominal değerle uyumu.</li>
-        <li><strong>Elektrokoter Çıkış Gücü ve HF Kaçak Testleri:</strong> Monopolar ve bipolar cerrahi kesme güçlerinin doğrulanması.</li>
+        <li><strong>Elektriksel Güvenlik Testleri (IEC 62353 / IEC 60601):</strong> Koruyucu topraklama direnci (Protective Earth Resistance), gövde kaçak akımı (Enclosure Leakage) ve hasta devresi kaçak akımı ölçümleri.</li>
+        <li><strong>İnfüzyon & Perfüzör Pompası Testleri:</strong> Akış debisi (ml/saat) doğrulaması, tıkanma (occlusion) basınç alarmları ve hava kabarcığı detektör testleri.</li>
+        <li><strong>Hasta Başı Monitörleri:</strong> NIBP manşon basınç sızıntı testi, EKG genlik/frekans doğrulaması, SpO2 optik dalga boyu simülasyonu ve vücut sıcaklığı kalibrasyonu.</li>
       </ul>
       
-      <p>Düzenli kalibrasyon periyotları yalnızca yasal bir zorunluluk değil, aynı zamanda hasta güvenliğinin en temel teminatıdır.</p>
+      <h3>Düzenli Kalibrasyonun Kazanımları</h3>
+      <p>Periyodik metrolojik kontroller cihazların arıza oranlarını %40 azaltırken, cihaz ömrünü uzatır ve sağlık kurumlarının uluslararası akreditasyon (JCI, Sağlıkta Kalite Standartları) süreçlerine tam uyum sağlar.</p>
     `,
     cover_image: null,
     created_at: '2025-10-18T09:00:00Z',
   },
   {
     id: 'fallback-blog-2',
-    title: 'Yoğun Bakım Ventilatörlerinin Çalışma Prensipleri ve Bakım İpuçları',
+    title: 'Yoğun Bakım Mekanik Ventilatörlerinin Çalışma Prensipleri ve Bakım Kılavuzu',
     slug: 'yogun-bakim-ventilatorleri-calisma-prensipleri',
-    excerpt: 'Ventilatör modları, solunum parametreleri, flow sensörleri ve koruyucu periyodik bakım adımları hakkında teknik rehber.',
+    excerpt: 'Ventilatör solunum modları, pnömatik blok yapısı, akış sensörleri ve koruyucu periyodik teknik servis bakım aşamaları.',
     content: `
-      <h2>Ventilatör Sistemlerinin Temel Mimarisi</h2>
-      <p>Mekanik ventilatörler, kendi kendine yeterli solunum yapamayan hastalara hava ve oksijen karışımını belirlenen basınç ve hacim parametreleriyle sunan ileri düzey yaşam destek sistemleridir.</p>
+      <h2>Ventilatör Sistemlerinin Temel Mimarisi ve Solunum Döngüsü</h2>
+      <p>Mekanik ventilatörler, kendi kendine solunum yapamayan veya solunum yetmezliği çeken kritik hastalara oksijen ve medikal hava karışımını belirli basınç, hacim ve frekansta ileten hayati yaşam destek cihazlarıdır.</p>
       
-      <h3>Ana Bileşenler</h3>
+      <h3>Temel Solunum Modları</h3>
       <ul>
-        <li><strong>Gaz Karıştırıcı (Blender):</strong> Medikal hava ve %100 O2 gazlarını FiO2 oranına göre homojen karıştırır.</li>
-        <li><strong>Ekspirasyon Valfi & PEEP Kontrolü:</strong> Akciğerlerin sönmesini önlemek için son ekspiratuar pozitif basıncı (PEEP) ayarlar.</li>
-        <li><strong>Akış ve Basınç Sensörleri:</strong> İnspiratuar ve ekspiratuar akışları anlık milisaniye hassasiyetle ölçer.</li>
+        <li><strong>VCV (Hacim Kontrollü Ventilasyon):</strong> Hastaya her solukta önceden belirlenen tidal hacim (Vt) verilir; tepe basıncı hastanın akciğer direncine göre değişkenlik gösterir.</li>
+        <li><strong>PCV (Basınç Kontrollü Ventilasyon):</strong> Belirlenen inspiratuar basınç seviyesi korunarak hava iletilir; tidal hacim akciğer kompliyansına bağlıdır.</li>
+        <li><strong>SIMV & CPAP/PSV:</strong> Hastanın spontan solunum çabalarını destekleyen, senkronize ve basınç destekli modlar.</li>
       </ul>
 
-      <h3>Periyodik Bakımda Dikkat Edilmesi Gerekenler</h3>
-      <p>Oksijen hücrelerinin (O2 Cell) kimyasal ömür takibi, valf membranlarının sterilizasyon sonrası sızdırmazlık testleri ve dahili batarya kalibrasyonu her bakım döngüsünde eksiksiz yapılmalıdır.</p>
+      <h3>Kritik Pnömatik ve Elektronik Bileşenler</h3>
+      <ul>
+        <li><strong>Gaz Mikseri (Blender / Oransal Valfler):</strong> %21 ile %100 arasında hassas FiO2 karışımı sağlar.</li>
+        <li><strong>Ekspirasyon Valfi & PEEP Mekanizması:</strong> Alveollerin sönmesini engellemek için soluk sonu pozitif basıncı (PEEP) milibar hassasiyetinde tutar.</li>
+        <li><strong>Akış (Flow) Sensörleri:</strong> Pneumotachograph, sıcak tel (hot-wire) veya ultrasonik sensörler ile hasta eforunu anlık milisaniye mertebesinde algılar.</li>
+      </ul>
+
+      <h3>Teknik Bakım ve Servis Prosedürleri</h3>
+      <p>Her periyodik bakımda oksijen hücresinin (O2 Cell) kimyasal ömrü kontrol edilmeli, dahili batarya deşarj testi yapılmalı, valf sızdırmazlık testleri ve yapay akciğer simülatörüyle basınç-hacim doğrulaması gerçekleştirilmelidir.</p>
     `,
     cover_image: null,
     created_at: '2025-09-25T11:30:00Z',
   },
   {
     id: 'fallback-blog-3',
-    title: 'Sağlık Teknolojilerinde Nesnelerin İnterneti (IoT) ve Telemetri',
-    slug: 'saglikta-iot-ve-telemetri-uygulamalari',
-    excerpt: 'Giyilebilir biyomedikal sensörler ve kablosuz telemetri sistemleri ile uzaktan hasta takibinin geleceği.',
+    title: 'Anestezi Cihazları ve Gaz Dağıtım Sistemlerinde Güvenlik Protokolleri',
+    slug: 'anestezi-cihazlari-gaz-dagitim-sistemleri-guvenlik',
+    excerpt: 'Ameliyathane anestezi iş istasyonlarının bileşenleri, vaporizatör kalibrasyonu, absorber sistemleri ve kaçak testi protokolleri.',
     content: `
-      <h2>Akıllı Sağlık ve Kablosuz Biyomedikal Cihazlar</h2>
-      <p>Geleneksel kablolu hasta takip sistemleri yerini kablosuz, düşük güç tüketen ve sürekli veri ileten IoT tabanlı telemetri ağlarına bırakıyor.</p>
+      <h2>Ameliyathane Anestezi İş İstasyonlarının Görevi</h2>
+      <p>Anestezi cihazları; cerrahi operasyon süresince hastanın uyutulması, ağrı hissetmemesi ve yaşamsal fonksiyonlarının stabil tutulmasını sağlayan gaz karışımı (O2, N2O, Medikal Hava ve Anestezik Ajanlar) ileten kombine sistemlerdir.</p>
       
-      <h3>Telemetri Sistemlerinin Avantajları</h3>
-      <p>Hastanın yatağa bağımlı kalmadan servis içinde güvenle hareket edebilmesini sağlarken, aritmileri ve vital bulgu değişimlerini merkezi hemşire istasyonuna anında iletir.</p>
-      
-      <h3>Kullanılan İletişim Protokolleri</h3>
+      <h3>Güvenlik Mekanizmaları ve Gaz Dağıtımı</h3>
       <ul>
-        <li><strong>BLE (Bluetooth Low Energy):</strong> Düşük enerjiyle kesintisiz EKG ve nabız iletimi.</li>
-        <li><strong>Wi-Fi & MQTT:</strong> Hastane içi intranet üzerinden yüksek veri güvenliğiyle merkezi sunucuya aktarım.</li>
-        <li><strong>Zigbee:</strong> Geniş alanlı sensör ağı dağıtımı.</li>
+        <li><strong>Pin-Index ve DISS Güvenlik Sistemi:</strong> Yanlış gaz tüpünün veya merkezi hortumun takılmasını mekanik tırnak farklarıyla imkansız hale getirir.</li>
+        <li><strong>Hipoksik Koruma Sistemi:</strong> Oksijen oranı %25'in altına düştüğünde N2O gaz akışını otomatik olarak kesen mekanik/pnömatik kilit.</li>
+        <li><strong>Vaporizatörler (Buharlaştırıcılar):</strong> Sıvı anestezik ajanları (Sevofluran, Desfluran, İzofluran) sıcaklık ve akış kompanzasyonuyla buharlaştırarak hassas konsantrasyonda (%) solunum devresine katar.</li>
       </ul>
+
+      <h3>Periyodik Kontrol ve Devre Testi Aşamaları</h3>
+      <ol>
+        <li><strong>Yüksek ve Düşük Basınç Kaçak Testi (Leak Test):</strong> Devrede 30 cmH2O basınçta mikro düzeyde dahi kaçak olmaması şarttır.</li>
+        <li><strong>Karbondioksit Absorber (Soda-Lime) Kontrolü:</strong> Kimyasal renk değişimi ve tozlanma durumu izlenmeli, satüre olmuş kireç derhal değiştirilmelidir.</li>
+        <li><strong>Atık Gaz Tahliye Sistemi (AGSS):</strong> Ameliyathane personeline anestezik gaz sızıntısını önleyen aktif tahliye emiş gücü kontrol edilmelidir.</li>
+      </ol>
     `,
     cover_image: null,
     created_at: '2025-08-30T15:00:00Z',
   },
   {
     id: 'fallback-blog-4',
-    title: 'Defibrilatör Cihazlarının Test Prosedürleri ve Güvenlik Protokolleri',
+    title: 'Kardiyak Acillerde Defibrilatör Sistemleri ve Analizör Testleri',
     slug: 'defibrilator-test-prosedurleri-ve-guvenlik',
-    excerpt: 'Bifazik defibrilatör dalga formları, senkronize kardiyoversiyon testleri ve analizör kullanımı.',
+    excerpt: 'Bifazik defibrilatör dalga formları, senkronize kardiyoversiyon, harici pacemaker modları ve analizör testleri.',
     content: `
-      <h2>Kardiyak Acillerde Defibrilatör Güvenilirliği</h2>
-      <p>Defibrilatörler, ventriküler fibrilasyon gibi ölümcül aritmilerde kalbe kontrollü elektrik şoku vererek normal ritmi yeniden başlatan cihazlardır.</p>
+      <h2>Kardiyak Aritmilerde Defibrilasyonun Rolü</h2>
+      <p>Defibrilatörler, ventriküler fibrilasyon (VF) ve nabızsız ventriküler taşikardi (VT) gibi ölümcül kardiyak aritmilerde kalbe kontrollü bir elektrik şoku uygulayarak kalbin doğal elektriksel odağının yeniden devreye girmesini sağlar.</p>
       
-      <h3>Monofazik vs. Bifazik Dalga Formları</h3>
-      <p>Modern bifazik defibrilatörler daha düşük enerji (150-200 Joule) ile daha yüksek başarı oranı sunar ve miyokardiyal hasarı en aza indirir.</p>
+      <h3>Monofazik vs. Modern Bifazik Dalga Formları</h3>
+      <p>Geleneksel monofazik şoklar tek yönlü akım iletirken, modern <strong>Bifazik Truncated Exponential (BTE)</strong> dalga formları akımın yönünü tersine çevirerek çok daha düşük enerji seviyelerinde (150-200 Joule) daha yüksek defibrilasyon başarısı sunar ve miyokart dokusunda termal hasarı minimize eder.</p>
       
-      <h3>Analizör ile Yapılan Test Aşamaları</h3>
-      <ol>
-        <li>50 Ohm standart simüle direnç yükünde enerji doğruluğu testi.</li>
-        <li>Şarj süresi testi (maksimum enerjiye 10 saniyenin altında ulaşma kontrolü).</li>
-        <li>Senkronize modda R-dalgası gecikme süresinin (en fazla 60 ms) ölçümü.</li>
-      </ol>
+      <h3>Defibrilatör Analizörü ile Yapılan Güvenlik Testleri</h3>
+      <ul>
+        <li><strong>Enerji Çıkış Doğruluğu:</strong> 50 Ohm standart insan vücut empedans yükünde seçilen enerji (örneğin 200J) ile cihazın aktardığı gerçek enerji arasındaki fark ±%10 sınırında olmalıdır.</li>
+        <li><strong>Şarj Süresi Testi:</strong> Cihazın şebeke ve batarya beslemesinde maksimum enerji seviyesine 10 saniyenin altında ulaşabildiği kronometrik olarak ölçülmelidir.</li>
+        <li><strong>Senkronize Kardiyoversiyon:</strong> EKG'deki R-dalgası tepesinden sonraki deşarj gecikme süresi 60 ms'yi aşmamalıdır.</li>
+        <li><strong>Harici Pacemaker (Pace) Modu:</strong> Dakikadaki atım sayısı (ppm) ve akım şiddeti (mA) dalga formu analizörü ile doğrulanır.</li>
+      </ul>
     `,
     cover_image: null,
     created_at: '2025-07-22T13:45:00Z',
   },
   {
     id: 'fallback-blog-5',
-    title: 'Tıbbi Görüntüleme Cihazlarında Periyodik Bakım ve Kalite Kontrolü',
-    slug: 'tibbi-goruntuleme-periyodik-bakim-rehberi',
-    excerpt: 'Ultrason, Röntgen ve Tomografi sistemlerinde görüntü kalitesi, prob bakımı ve radyasyon güvenliği.',
+    title: 'Hemodiyaliz Cihazlarının Hidrolik ve Elektromekanik Mimarisi',
+    slug: 'hemodiyaliz-cihazlari-hidrolik-ve-elektromekanik-mimari',
+    excerpt: 'Diyalizat hazırlama, ultrafiltrasyon kontrolü, kan kaçağı dedektörleri ve hemodiyaliz makinelerinin hidrolik devre prensipleri.',
     content: `
-      <h2>Görüntüleme Teknolojilerinde Bakım Disiplini</h2>
-      <p>Radyoloji departmanındaki ultrason, dijital röntgen ve floroskopi sistemleri yüksek hassasiyet gerektiren optoelektronik ve akustik bileşenlerden oluşur.</p>
+      <h2>Hemodiyaliz Cihazının Temel Amacı</h2>
+      <p>Böbrek yetmezliği bulunan hastalarda vücutta biriken üre, kreatinin ve fazla sıvının yarı geçirgen bir membran (diyalizör) yardımıyla kandan uzaklaştırılması işlemidir.</p>
       
-      <h3>Ultrason Prob Bakımı ve Fantom Testleri</h3>
-      <p>Piezoelektrik kristal yapısının hasar görmemesi için probların düzenli olarak doku eşdeğeri fantomlar üzerinde lateral çözünürlük ve derinlik penetrasyon testlerine tabi tutulması gerekir.</p>
-      
-      <h3>X-Işını Cihazlarında Kalite Güvencesi</h3>
-      <p>kVp doğruluğu, mAs lineerliği, kolimasyon alanı hizalaması ve tüp sızıntı radyasyonu kontrolleri radyasyon güvenliği açısından periyodik olarak belgelenmelidir.</p>
+      <h3>Hidrolik Devre ve Diyalizat Karışımı</h3>
+      <ul>
+        <li><strong>Saf Su Girişi & Isıtma:</strong> Reverse Osmosis (RO) sisteminden gelen saf su 36-37°C vücut sıcaklığına ısıtılır.</li>
+        <li><strong>Oransal Karışım (A & B Konsantreleri):</strong> Asit ve bikarbonat konsantreleri hassas dozaj pompalarıyla karıştırılır; iletkenlik (Conductivity) hücreleriyle iyon yoğunluğu anlık izlenir.</li>
+        <li><strong>Ultrafiltrasyon (UF) ve Kapalı Dengeleme Hücreleri:</strong> Hastadan çekilecek sıvı miktarı (UF oranı), balans odacıkları (balancing chambers) sayesinde mililitre hassasiyetinde kontrol edilir.</li>
+      </ul>
+
+      <h3>Hasta Güvenlik Devreleri</h3>
+      <ul>
+        <li><strong>Kan Kaçağı Dedektörü (Blood Leak Detector):</strong> Diyalizör liflerindeki mikro yırtıkları optik dalga boyu soğurmasıyla anında fark eder ve diyalizatı bypass moduna alır.</li>
+        <li><strong>Hava Dedektörü (Air Bubble Detector):</strong> Ultrasonik sensörler ile venöz hatta 1 damla dahi hava kabarcığı geçişini engelleyerek hava embolisini önler.</li>
+        <li><strong>Venöz ve Arteriyel Basınç Sensörleri:</strong> Damar yolu basınç anomalilerinde kan pompasını derhal durdurur.</li>
+      </ul>
     `,
     cover_image: null,
     created_at: '2025-06-18T10:20:00Z',
+  },
+  {
+    id: 'fallback-blog-6',
+    title: 'Ameliyathane Cerrahi Cihazları: Elektrokoter ve Cerrahi Aspiratörlerin Bakımı',
+    slug: 'ameliyathane-elektrokoter-ve-aspirator-bakim-dinamikleri',
+    excerpt: 'Yüksek frekanslı elektrocerrahi üniteleri, monopolar/bipolar modlar, nötr plak güvenlik sistemleri ve cerrahi aspiratör bakımı.',
+    content: `
+      <h2>Elektrocerrahi (Koter) Sistemlerinin Fiziksel Prensibi</h2>
+      <p>Elektrokoter cihazları, 300 kHz ile 3 MHz arasındaki yüksek frekanslı alternatif akımı dokuya uygulayarak hücre içi sıvıyı aniden buharlaştırır (kesme / cut) veya proteinleri pıhtılaştırarak kanamayı durdurur (koagülasyon / coag).</p>
+      
+      <h3>Monopolar ve Bipolar Çalışma Farkı</h3>
+      <ul>
+        <li><strong>Monopolar Mod:</strong> Akım aktif koter kaleminden geçer, hedef dokuda ısı oluşturur ve hastanın bacağına yapıştırılan geniş yüzeyli nötr plaktan (dönüş elektrodu) geri döner.</li>
+        <li><strong>Bipolar Mod:</strong> Akım yalnızca bipolar forsepsin iki ucu arasında mikro mesafede akar; nötr plak gerektirmez ve çevre dokulara minimum ısı yayılımı sağlar.</li>
+      </ul>
+
+      <h3>REM (Return Electrode Monitoring) Güvenlik Sistemi</h3>
+      <p>Nötr plağın hastanın cildinden kısmen ayrılması durumunda temas yüzeyi küçüleceği için yanık riski oluşur. REM devresi çift parçalı nötr plak arasındaki empedansı sürekli ölçerek cilt teması azaldığında akımı mikrosaniyeler içinde keser.</p>
+
+      <h3>Cerrahi Aspiratör Sistemlerinin Bakımı</h3>
+      <p>Ameliyat sahasındaki kan ve sıvıları uzaklaştıran cerrahi aspiratörlerde vakum regülatör testi, yağsız pistonlu pompa bakımı, taşma önleyici hidrofor şamandıra mekanizması ve HEPA/hidrofobik bakteri filtrelerinin düzenli değişimi enfeksiyon kontrolü için şarttır.</p>
+    `,
+    cover_image: null,
+    created_at: '2025-05-12T08:15:00Z',
   },
 ]
