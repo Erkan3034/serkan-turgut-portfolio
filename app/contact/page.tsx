@@ -11,6 +11,7 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { supabase } from '@/lib/supabase'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'İsim en az 2 karakter olmalıdır'),
@@ -38,6 +39,20 @@ export default function ContactPage() {
     setSubmitStatus('idle')
 
     try {
+      // 1. Save message to Supabase database for Admin panel
+      try {
+        await supabase.from('messages').insert([
+          {
+            name: data.name,
+            email: data.email,
+            message: data.message,
+          },
+        ])
+      } catch (dbErr) {
+        console.warn('Supabase message insert notice:', dbErr)
+      }
+
+      // 2. Send email notification via Formspree
       const res = await fetch('https://formspree.io/f/mkgqawap', {
         method: 'POST',
         headers: {

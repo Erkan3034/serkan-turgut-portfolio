@@ -1,9 +1,32 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key'
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  if (typeof window !== 'undefined') {
+    console.warn('⚠️ Supabase ortam değişkenleri (NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY) tanımlanmamış.')
+  }
+}
+
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: false, // Prevents infinite token refresh loops on broken domains
+  }
+})
+
+// Safe query helper with timeout
+export async function safeQuery<T>(promise: PromiseLike<T>, fallback: T, timeoutMs = 2000): Promise<T> {
+  try {
+    const timeoutPromise = new Promise<T>((resolve) => 
+      setTimeout(() => resolve(fallback), timeoutMs)
+    )
+    return await Promise.race([promise, timeoutPromise])
+  } catch (error) {
+    return fallback
+  }
+}
 
 // Database types
 export interface Database {

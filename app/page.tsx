@@ -1,72 +1,98 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Layout } from '@/components/layout/layout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Download, GraduationCap, Briefcase, Award } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { Download, GraduationCap, Briefcase, Award, Loader2 } from 'lucide-react'
+import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
 
 type About = Database['public']['Tables']['about']['Row']
 type Blog = Database['public']['Tables']['blog']['Row']
 type Project = Database['public']['Tables']['projects']['Row']
 type Certificate = Database['public']['Tables']['certificates']['Row']
+type CVFile = Database['public']['Tables']['cv_files']['Row']
 
 export default function HomePage() {
+  const router = useRouter()
   const [about, setAbout] = useState<About | null>(null)
+  const [latestCV, setLatestCV] = useState<CVFile | null>(null)
   const [blogCount, setBlogCount] = useState(0)
   const [projectCount, setProjectCount] = useState(0)
   const [certificateCount, setCertificateCount] = useState(0)
-  const [loading, setLoading] = useState(true)
+  const [downloading, setDownloading] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetch about content
-        const { data: aboutData } = await supabase
-          .from('about')
-          .select('*')
-          .order('updated_at', { ascending: false })
-          .limit(1)
-          .maybeSingle()
-
-        // Fetch counts for conditional navigation
-        const [blogResult, projectResult, certificateResult] = await Promise.all([
-          supabase.from('blog').select('id', { count: 'exact', head: true }),
-          supabase.from('projects').select('id', { count: 'exact', head: true }),
-          supabase.from('certificates').select('id', { count: 'exact', head: true })
+        const [aboutRes, cvRes, blogResult, projectResult, certificateResult] = await Promise.all([
+          safeQuery(
+            supabase.from('about').select('*').order('updated_at', { ascending: false }).limit(1).maybeSingle(),
+            { data: null, error: null }
+          ),
+          safeQuery(
+            supabase.from('cv_files').select('*').order('uploaded_at', { ascending: false }).limit(1).maybeSingle(),
+            { data: null, error: null }
+          ),
+          safeQuery(
+            supabase.from('blog').select('id', { count: 'exact', head: true }),
+            { count: 0, data: null, error: null }
+          ),
+          safeQuery(
+            supabase.from('projects').select('id', { count: 'exact', head: true }),
+            { count: 0, data: null, error: null }
+          ),
+          safeQuery(
+            supabase.from('certificates').select('id', { count: 'exact', head: true }),
+            { count: 0, data: null, error: null }
+          ),
         ])
 
-        setAbout(aboutData)
+        if (aboutRes.data) setAbout(aboutRes.data)
+        if (cvRes.data) setLatestCV(cvRes.data)
         setBlogCount(blogResult.count || 0)
         setProjectCount(projectResult.count || 0)
         setCertificateCount(certificateResult.count || 0)
       } catch (error) {
         console.error('Error fetching data:', error)
-      } finally {
-        setLoading(false)
       }
     }
 
     fetchData()
   }, [])
 
-  if (loading) {
-    return (
-      <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-bio-primary"></div>
-        </div>
-      </Layout>
-    )
+  const handleDownloadCV = async () => {
+    setDownloading(true)
+    const fileUrl = latestCV?.file_url || '/Serkan_Turgut_CV.pdf'
+    const fileName = latestCV?.title || 'Serkan_Turgut_CV'
+
+    try {
+      const response = await fetch(fileUrl)
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${fileName}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+      document.body.removeChild(a)
+    } catch (error) {
+      console.error('Error downloading CV:', error)
+      window.open(fileUrl, '_blank')
+    } finally {
+      setDownloading(false)
+    }
   }
 
   return (
-    <Layout 
-      showBlog={blogCount > 0} 
-      showProjects={projectCount > 0} 
+    <Layout
+      showBlog={blogCount > 0}
+      showProjects={projectCount > 0}
       showCertificates={certificateCount > 0}
     >
       {/* Hero Section */}
@@ -82,13 +108,22 @@ export default function HomePage() {
                 Biyomedikal Cihaz Teknolojisi mezunu, yenilikçi sağlık çözümleri geliştirmeye tutkulu.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-bio-primary hover:bg-bio-primary/90">
-                  <Download className="mr-2 h-5 w-5" />
-                  CV İndir
+                <Button
+                  size="lg"
+                  className="bg-bio-primary hover:bg-bio-primary/90"
+                  onClick={handleDownloadCV}
+                  disabled={downloading}
+                >
+                  {downloading ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    <Download className="mr-2 h-5 w-5" />
+                  )}
+                  {downloading ? 'İndiriliyor...' : 'CV İndir'}
                 </Button>
                 {projectCount > 0 && (
                   <Button asChild variant="outline" size="lg">
-                    <a href="/projeler">Projeleri Görüntüle</a>
+                    <Link href="/projects">Projeleri Görüntüle</Link>
                   </Button>
                 )}
               </div>
@@ -96,9 +131,9 @@ export default function HomePage() {
             <div className="flex justify-center">
               <div className="w-80 h-80 bg-gradient-to-br from-bio-primary to-bio-secondary rounded-full flex items-center justify-center">
                 <div className="w-72 h-72 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden">
-                  <img 
-                    src="/images/profile.png" 
-                    alt="Serkan Turgut" 
+                  <img
+                    src="/images/profile.png"
+                    alt="Serkan Turgut"
                     className="w-full h-full object-cover rounded-full"
                     onError={(e) => {
                       // Fallback to graduation cap icon if image not found
@@ -126,12 +161,12 @@ export default function HomePage() {
             </h2>
             <div className="w-24 h-1 bg-bio-primary mx-auto"></div>
           </div>
-          
+
           <div className="max-w-4xl mx-auto">
             <Card>
               <CardContent className="p-8">
                 {about?.content && about.content.trim().length > 0 ? (
-                  <div 
+                  <div
                     className="prose prose-lg max-w-none text-gray-700"
                     dangerouslySetInnerHTML={{ __html: about.content }}
                   />

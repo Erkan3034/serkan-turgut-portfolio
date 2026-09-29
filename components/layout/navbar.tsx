@@ -23,7 +23,7 @@ interface NavbarProps {
   showCertificates?: boolean
 }
 
-export function Navbar({ showBlog = false, showProjects = false, showCertificates = false }: NavbarProps) {
+export function Navbar({ showBlog = true, showProjects = true, showCertificates = true }: NavbarProps) {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 

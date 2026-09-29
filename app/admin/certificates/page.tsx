@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Plus, ArrowLeft } from 'lucide-react'
+import { Plus, ArrowLeft, Edit, Trash2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
 
@@ -39,6 +39,23 @@ export default function AdminCertificatesPage() {
       console.error('Error fetching certificates:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Bu sertifikayı silmek istediğinizden emin misiniz?')) return
+
+    try {
+      const { error } = await supabase
+        .from('certificates')
+        .delete()
+        .eq('id', id)
+
+      if (error) throw error
+      await fetchCertificates()
+    } catch (error) {
+      console.error('Error deleting certificate:', error)
+      alert('Sertifika silinirken bir hata oluştu.')
     }
   }
 
@@ -82,7 +99,30 @@ export default function AdminCertificatesPage() {
             {certificates.map((c) => (
               <Card key={c.id}>
                 <CardHeader>
-                  <CardTitle>{c.title}</CardTitle>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="text-xl">{c.title}</CardTitle>
+                      {c.issuer && <p className="text-sm text-gray-500 mt-1">{c.issuer}</p>}
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => router.push(`/admin/certificates/${c.id}/edit`)}
+                      >
+                        <Edit className="h-4 w-4 mr-1" />
+                        Edit
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => handleDelete(c.id)}
+                      >
+                        <Trash2 className="h-4 w-4 mr-1" />
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
                 </CardHeader>
               </Card>
             ))}

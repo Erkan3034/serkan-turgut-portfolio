@@ -5,7 +5,7 @@ import { Layout } from '@/components/layout/layout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Calendar, Clock } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -19,12 +19,11 @@ export default function BlogPage() {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const { data, error } = await supabase
-          .from('blog')
-          .select('*')
-          .order('created_at', { ascending: false })
-
-        if (error) throw error
+        const { data } = await safeQuery(
+          supabase.from('blog').select('*').order('created_at', { ascending: false }),
+          { data: [], error: null },
+          1500
+        )
         setBlogs(data || [])
       } catch (error) {
         console.error('Error fetching blogs:', error)

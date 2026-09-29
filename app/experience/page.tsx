@@ -5,7 +5,7 @@ import { Layout } from '@/components/layout/layout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Calendar, MapPin, Briefcase, GraduationCap } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
 
 type Experience = Database['public']['Tables']['experience']['Row']
@@ -17,12 +17,11 @@ export default function ExperiencePage() {
   useEffect(() => {
     async function fetchExperiences() {
       try {
-        const { data, error } = await supabase
-          .from('experience')
-          .select('*')
-          .order('year', { ascending: false })
-
-        if (error) throw error
+        const { data } = await safeQuery(
+          supabase.from('experience').select('*').order('year', { ascending: false }),
+          { data: [], error: null },
+          1500
+        )
         setExperiences(data || [])
       } catch (error) {
         console.error('Error fetching experiences:', error)

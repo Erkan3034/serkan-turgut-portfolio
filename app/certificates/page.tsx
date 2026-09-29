@@ -5,7 +5,7 @@ import { Layout } from '@/components/layout/layout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Download, FileText, Calendar, Award } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
 import Image from 'next/image'
 
@@ -18,12 +18,11 @@ export default function CertificatesPage() {
   useEffect(() => {
     async function fetchCertificates() {
       try {
-        const { data, error } = await supabase
-          .from('certificates')
-          .select('*')
-          .order('issued_date', { ascending: false })
-
-        if (error) throw error
+        const { data } = await safeQuery(
+          supabase.from('certificates').select('*').order('issued_date', { ascending: false }),
+          { data: [], error: null },
+          1500
+        )
         setCertificates(data || [])
       } catch (error) {
         console.error('Error fetching certificates:', error)

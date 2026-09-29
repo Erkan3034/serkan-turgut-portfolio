@@ -8,7 +8,7 @@ interface LayoutProps {
   showCertificates?: boolean
 }
 
-export function Layout({ children, showBlog = false, showProjects = false, showCertificates = false }: LayoutProps) {
+export function Layout({ children, showBlog = true, showProjects = true, showCertificates = true }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar 

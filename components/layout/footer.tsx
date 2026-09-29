@@ -31,7 +31,7 @@ export function Footer() {
         </div>
         
         <div className="mt-6 pt-6 border-t border-gray-200 text-center text-gray-500">
-          <p>&copy; 2025 Serkan Turgut. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Serkan Turgut. All rights reserved.</p>
         </div>
       </div>
     </footer>

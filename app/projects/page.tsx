@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { ExternalLink, Github, Eye } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { supabase, safeQuery } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
 import Image from 'next/image'
 
@@ -21,12 +21,11 @@ export default function ProjectsPage() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const { data, error } = await supabase
-          .from('projects')
-          .select('*')
-          .order('created_at', { ascending: false })
-
-        if (error) throw error
+        const { data } = await safeQuery(
+          supabase.from('projects').select('*').order('created_at', { ascending: false }),
+          { data: [], error: null },
+          1500
+        )
         setProjects(data || [])
       } catch (error) {
         console.error('Error fetching projects:', error)
