@@ -1,0 +1,27 @@
+# Serkan Turgut - Biyomedikal Cihaz Teknikeri
+
+> Serkan Turgut, mekanik ventilatörler (Biyovent vb.), hasta başı monitörleri, elektrokardiyografi (EKG), medikal kalibrasyon ve klinik cihaz bakım-onarım süreçlerinde uzmanlaşmış profesyonel Biyomedikal Cihaz Teknikeridir.
+
+## Hakkında & Mesleki Özet
+- **Unvan:** Biyomedikal Cihaz Teknikeri
+- **Eğitim:** İstanbul Gedik Üniversitesi - Biyomedikal Cihaz Teknolojisi (Önlisans)
+- **Konum:** İstanbul, Türkiye
+- **Uzmanlık Alanları:** Mekanik Ventilatör Sistemleri (Biyovent vb.), Tıbbi Enstrümantasyon, Medikal Kalibrasyon Standartları, Klinik Koruyucu Bakım, Elektriksel Güvenlik Testleri (IEC 62353, IEC 60601), Hasta Başı Monitörleri, EKG, İnfüzyon Pompaları, Defibrilatörler.
+- **İletişim E-Posta:** Serkantrg56@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/serkan-turgut-9668b9237/
+- **Portfolyo & Blog:** https://serkanturgut.com
+
+## Temel Sayfalar
+- [Ana Sayfa](https://serkanturgut.com): Serkan Turgut'un portfolyosu, biyomedikal uzmanlıkları ve hizmet alanları.
+- [CV & Özgeçmiş](https://serkanturgut.com/cv): Profesyonel CV, eğitim geçmişi, teknik yetkinlikler ve indirilebilir PDF formatı.
+- [Deneyim Zaman Çizelgesi](https://serkanturgut.com/experience): Klinik ve saha deneyimleri, Teknomedikal saha servisliği ve Prof. Dr. Lütfi Kırdar Şehir Hastanesi staj geçmişi.
+- [Biyomedikal Blog](https://serkanturgut.com/blog): Tıbbi cihaz teknolojileri, kalibrasyon standartları ve ventilatör arıza teşhis rehberleri.
+- [İletişim](https://serkanturgut.com/contact): Teknik servis ve iş birliği iletişim formu.
+
+## Biyomedikal Makaleleri & Teknik Dokümantasyon
+- [Biyomedikal Cihazlarda Kalibrasyonun Önemi ve Yasal Standartlar](https://serkanturgut.com/blog/biyomedikal-cihazlarda-kalibrasyonun-onemi): Tıbbi cihaz kalibrasyonunun hasta güvenliği, klinik doğruluk ve uluslararası medikal standartlar (ISO 13485, IEC 60601) açısından kritik rolü.
+- [Mekanik Ventilatörlerde Periyodik Bakım ve Arıza Teşhis Süreçleri](https://serkanturgut.com/blog/mekanik-ventilatorlerde-periyodik-bakim-ve-ariza-teshisi): Biyovent ve yoğun bakım ventilatörlerinde ekspirasyon valfi, akış sensörü, O2 hücresi kalibrasyonu ve alarm sistemlerinin sistematik bakımı.
+- [Hasta Başı Monitörlerinde Sık Karşılaşılan Donanımsal Hatalar](https://serkanturgut.com/blog/hasta-basi-monitorlerinde-sik-karsilasilan-hatalar): Çok parametreli hasta monitörlerinde EKG parazitleri, SpO2 prob arızaları ve NIBP manşon kaçaklarının saha onarım adımları.
+- [Hastanelerde Klinik Mühendislik ve Biyomedikal Biriminin Rolü](https://serkanturgut.com/blog/hastanelerde-klinik-muhendislik-ve-biyomedikal-rolu): Sağlık kuruluşlarında tıbbi cihaz envanter yönetimi, koruyucu periyodik bakım planlaması ve klinik risk yönetimi.
+- [EKG Cihazlarında Sinyal Gürültüsü ve Elektriksel Güvenlik Testleri](https://serkanturgut.com/blog/ekg-cihazlarinda-sinyal-gurultusu-ve-guvenlik-testleri): 50 Hz şebeke paraziti, topraklama doğrulaması ve IEC 62353 standartlarına göre gövde kaçak akım testleri.
+- [Biyomedikal Cihaz Teknikerinin Sahadaki Bir Günü: Vaka Analizleri](https://serkanturgut.com/blog/biyomedikal-teknikerin-sahadaki-bir-gunu): Yoğun bakım ve acil servis ortamında arızalı cihazlara hızlı müdahale, kalibrasyon testleri ve teknik servis raporlama disiplini.

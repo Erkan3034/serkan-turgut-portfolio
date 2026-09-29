@@ -1,0 +1,46 @@
+# Serkan Turgut - Biyomedikal Cihaz Teknikeri (Kapsamlı AI Dokümantasyonu)
+
+> Bu dosya yapay zeka modelleri (LLMs), arama motorları ve AI asistanları için Serkan Turgut'un biyomedikal kariyeri, uzmanlıkları ve teknik yayınları hakkında tam ve detaylı bilgi sunar.
+
+## 1. Kişisel ve Mesleki Profil
+- **Tam İsim:** Serkan Turgut
+- **Meslek:** Biyomedikal Cihaz Teknikeri (Biomedical Equipment Technician)
+- **Eğitim:** İstanbul Gedik Üniversitesi - Biyomedikal Cihaz Teknolojisi (2023)
+- **Yabancı Dil:** İngilizce (B1 - English Time Dil Okulları)
+- **Konum:** İstanbul, Türkiye
+- **E-Posta:** Serkantrg56@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/serkan-turgut-9668b9237/
+- **GitHub:** https://github.com/Erkan3034
+
+## 2. Teknik Uzmanlık Alanları & Tıbbi Cihazlar
+1. **Yaşam Destek Cihazları:**
+   - Mekanik Ventilatör Sistemleri (Biyovent vb.)
+   - Anestezi Cihazları ve Gaz Mikserleri
+   - Ekspirasyon Valfleri ve Akış Sensörleri Kalibrasyonu
+   - O2 Hücresi ve Basınç Transdüser Doğrulaması
+
+2. **Kardiyak ve Hasta İzleme Sistemleri:**
+   - Çok Parametreli Hasta Başı Monitörleri (SpO2, NIBP, EKG, Sıcaklık, IBP)
+   - 12 Kanallı Elektrokardiyografi (EKG) Cihazları
+   - Bifazik / Monofazik Defibrilatör Sistemleri
+   - İnfüzyon ve Şırınga Pompaları
+
+3. **Kalibrasyon & Elektriksel Güvenlik:**
+   - Medikal Güvenlik Standartları: IEC 62353, IEC 60601-1, ISO 13485
+   - Gövde Kaçak Akımı ve Toprak Sürekliliği Ölçümleri
+   - Simülatör ve Kalibratör ile Doğruluk Testleri (Akış, Basınç, Hacim, Elektriksel Sinyal)
+   - Teknik Servis Formu Düzenleme ve Yasal Dokümantasyon
+
+## 3. Kariyer ve Saha Deneyimi
+- **Teknomedikal (2025 - Devam Ediyor):** Biyomedikal Cihaz Teknikeri olarak sahada ve atölyede mekanik ventilatörlerin (Biyovent vb.) koruyucu bakımı, arıza analizi, kalibrasyon testleri ve müşteri hastanelere yerinde teknik destek verilmesi.
+- **Prof. Dr. Lütfi Kırdar Şehir Hastanesi (2024 - Staj):** Klinik mühendislik biriminde hasta başı monitörleri, EKG, infüzyon pompaları ve ameliyathane cihazlarının periyodik kontrol ve bakım süreçlerine katılım.
+- **İstanbul Gedik Üniversitesi (2021 - 2023):** Biyomedikal Cihaz Teknolojisi önlisans eğitimi, tıbbi enstrümantasyon ve biyomedikal devre analizi laboratuvarları.
+- **Yulaf Restaurant (2018 - 2022):** İşletme Müdürü olarak operasyon, bütçe, ekip koordinasyonu ve kriz yönetimi.
+
+## 4. Yayınlanmış Biyomedikal Makaleleri
+1. **Biyomedikal Cihazlarda Kalibrasyonun Önemi ve Yasal Standartlar:** Tıbbi cihaz kalibrasyonunun hasta güvenliği, klinik doğruluk ve ISO/IEC standartlarına göre yasal zorunlulukları.
+2. **Mekanik Ventilatörlerde Periyodik Bakım ve Arıza Teşhis Süreçleri:** Biyovent ve yoğun bakım ventilatörlerinde akış sensörü, ekspirasyon valfi ve Oksijen hücresi periyodik kontrol yöntemleri.
+3. **Hasta Başı Monitörlerinde Sık Karşılaşılan Donanımsal Hatalar:** EKG kablosu gürültüleri, SpO2 optik prob yıpranması ve NIBP pnömatik manşon sızıntılarını giderme adımları.
+4. **Hastanelerde Klinik Mühendislik ve Biyomedikal Biriminin Rolü:** Tıbbi cihaz envanteri, koruyucu bakım takvimi ve sağlık bakanlığı standartlarına uyum.
+5. **EKG Cihazlarında Sinyal Gürültüsü ve Elektriksel Güvenlik Testleri:** 50 Hz şebeke filtrelemesi, elektrot direnci ve kaçak akım kontrolleri.
+6. **Biyomedikal Cihaz Teknikerinin Sahadaki Bir Günü:** Acil servis ve yoğun bakım kliniklerinde karşılaşılan arıza vakaları ve teknik servis refleksleri.

@@ -18,6 +18,8 @@ import { FALLBACK_BLOGS } from '@/lib/fallback-data'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import type { Metadata } from 'next'
+
 export function generateStaticParams() {
   return FALLBACK_BLOGS.map((post) => ({
     slug: post.slug,
@@ -27,6 +29,53 @@ export function generateStaticParams() {
 interface BlogPostPageProps {
   params: {
     slug: string
+  }
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const blog = FALLBACK_BLOGS.find((b) => b.slug === params.slug)
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://serkanturgut.com'
+  
+  if (!blog) {
+    return {
+      title: 'Makale Bulunamadı',
+      description: 'Aranan biyomedikal makalesi bulunamadı.',
+    }
+  }
+
+  const title = `${blog.title} | Serkan Turgut`
+  const description = blog.excerpt || `${blog.title} hakkında detaylı biyomedikal ve medikal teknoloji makalesi.`
+  const url = `${siteUrl}/blog/${blog.slug}`
+
+  return {
+    title,
+    description,
+    keywords: [
+      'Biyomedikal Makalesi',
+      'Medikal Teknoloji',
+      'Ventilatör Kalibrasyonu',
+      'Biyomedikal Cihaz Bakımı',
+      blog.title,
+    ],
+    authors: [{ name: 'Serkan Turgut' }],
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: 'article',
+      publishedTime: blog.created_at,
+      authors: ['Serkan Turgut'],
+      images: blog.cover_image ? [{ url: blog.cover_image, alt: blog.title }] : [{ url: '/images/profile.png' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: blog.cover_image ? [blog.cover_image] : ['/images/profile.png'],
+    },
   }
 }
 
@@ -84,8 +133,71 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Find other related articles
   const otherPosts = FALLBACK_BLOGS.filter((b) => b.slug !== blog.slug).slice(0, 3)
 
+  // Structured Data Schema for Article & Breadcrumbs
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://serkanturgut.com'
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: blog.title,
+    description: blog.excerpt || blog.title,
+    image: blog.cover_image || `${siteUrl}/images/profile.png`,
+    datePublished: blog.created_at || new Date().toISOString(),
+    dateModified: blog.created_at || new Date().toISOString(),
+    author: {
+      '@type': 'Person',
+      name: 'Serkan Turgut',
+      url: siteUrl,
+      jobTitle: 'Biyomedikal Cihaz Teknikeri',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Serkan Turgut',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/images/profile.png`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/blog/${blog.slug}`,
+    },
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Ana Sayfa',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${siteUrl}/blog`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: blog.title,
+        item: `${siteUrl}/blog/${blog.slug}`,
+      },
+    ],
+  }
+
   return (
     <Layout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="min-h-screen bg-slate-50/50 py-10 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
